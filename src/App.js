@@ -1,39 +1,45 @@
-import React, { Component } from 'react';
-import ReactDOM from "react-dom";
-
+import React from 'react';
 import {Navbar, Nav, NavItem, Glyphicon} from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
-export default class ITxiaNavbar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {activeKey: 1};
-  }
 
-  handleSelect(selectedKey) {
-    this.setState({activeKey: selectedKey});
-  }
-
+export default class App extends React.Component {
   render() {
     return (
-      <Navbar>
+      <div>
+        <Navbar>
           <Navbar.Header className='navbar-header'>
             <Navbar.Brand>
-              <a href='/'>南京大学 IT 侠预约处理系统</a>
+            <LinkContainer to='/wait'>
+              <a>南京大学 IT 侠预约处理系统</a>
+            </LinkContainer>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
 
           <Navbar.Collapse>
-            <Nav activeKey={this.state.activeKey} onSelect={this.handleSelect}>
-              <NavItem eventKey={1} href="#"><Glyphicon glyph="list-alt" /> 处理请求</NavItem>
-              <NavItem eventKey={2} href="#"><Glyphicon glyph="comment" /> 最近回复</NavItem>
-              <NavItem eventKey={3} href="#"><Glyphicon glyph="cog" /> 设置</NavItem>
+            <Nav>
+              <LinkContainer to="/wait">
+                <NavItem><Glyphicon glyph="list-alt" /> 处理请求</NavItem>
+              </LinkContainer>
+              <LinkContainer to="/message">
+                <NavItem><Glyphicon glyph="comment" /> 最近回复</NavItem>
+              </LinkContainer>
+              <LinkContainer to="/setting">
+                <NavItem><Glyphicon glyph="cog" /> 设置</NavItem>
+              </LinkContainer>
             </Nav>
             <Nav pullRight>
-              <NavItem eventKey={4} href="#"><Glyphicon glyph="log-out" /> 登出</NavItem>
+              <LinkContainer to="/logout">
+                <NavItem><Glyphicon glyph="log-out" /> 登出</NavItem>
+              </LinkContainer>
             </Nav>
           </Navbar.Collapse>
       </Navbar>
-    );
+      <div className="container">
+        {this.props.children}
+      </div>
+      </div>
+    )
   }
 }

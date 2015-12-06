@@ -1,0 +1,66 @@
+.reply {
+	display: none;
+}
+
+.callout {
+	margin: 10px 0;
+	padding: 10px;
+}
+
+.callout h4 {
+	margin-top: 0;
+	margin-bottom: 5px;
+}
+
+.callout p:last-child {
+	margin-bottom: 0;
+}
+
+.callout-left {
+	text-align: left;
+	border-left: 5px solid #34789a;
+	margin-left: 15px;
+}
+
+.callout-right {
+	text-align: right;
+	border-right: 5px solid #3c763d;
+	margin-right: 15px;
+}
+
+/* Credit to bootsnipp.com for the css for the color graph */
+.colorgraph {
+	height: 5px;
+	border-top: 0;
+	background: #c4e17f;
+	border-radius: 5px;
+	background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%,
+		#f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%,
+		#db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%,
+		#669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+	background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%,
+		#f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%,
+		#db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%,
+		#669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+	background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca
+		25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe
+		50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1
+		87.5%, #62c2e4 87.5%, #62c2e4);
+	background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca
+		25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe
+		50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1
+		87.5%, #62c2e4 87.5%, #62c2e4);
+}
+
+.subform {
+	cursor: pointer;
+	color: #428BCA;
+}
+
+.subform:hover {
+	text-decoration: underline;
+}
+
+.glyphicon-remove {
+	cursor: pointer;
+}
