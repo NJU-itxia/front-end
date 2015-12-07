@@ -1,6 +1,6 @@
 import React from 'react';
 import {Navbar, Nav, NavItem, Glyphicon} from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import { LinkContainer, IndexLinkContainer } from "react-router-bootstrap";
 
 
 export default class App extends React.Component {
@@ -10,9 +10,9 @@ export default class App extends React.Component {
         <Navbar>
           <Navbar.Header className='navbar-header'>
             <Navbar.Brand>
-            <LinkContainer to='/wait'>
+            <IndexLinkContainer to='/wait'>
               <a>南京大学 IT 侠预约处理系统</a>
-            </LinkContainer>
+            </IndexLinkContainer>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createHistory, useBasename } from 'history';
-import { Router, Route, IndexRoute, Link, IndexLink } from 'react-router';
+import { Router, Route, IndexRoute, Redirect, Link, IndexLink } from 'react-router';
 
 import App from './App';
 import Wait from './order/Wait';
@@ -17,10 +17,11 @@ const history = useBasename(createHistory)({
 const routeInstance = (
   <Router history={history}>
     <Route path="/" component={App}>
-      <Route path="/wait" component={Wait}/>
-      <Route path="/message" component={Message}/>
-      <Route path="/setting" component={Setting}/>
-      <Route path="/logout" component={Logout}/>
+      <IndexRoute component={Wait}/>
+      <Route path="wait" component={Wait}/>
+      <Route path="message" component={Message}/>
+      <Route path="setting" component={Setting}/>
+      <Route path="logout" component={Logout}/>
     </Route>
   </Router>
 );
