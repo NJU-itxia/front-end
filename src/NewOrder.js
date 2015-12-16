@@ -46,19 +46,7 @@ export default class NewOrder extends React.Component {
           <Input type="text" label="电脑型号：" labelClassName="col-sm-2" wrapperClassName="col-sm-8" help={<p><Glyphicon glyph="question-sign"/> 电脑型号可以查看发票、说明书标识，在电脑背面或电池下面也有电脑型号标签。</p>} />
           <Input type="text" label="操作系统：" labelClassName="col-sm-2" wrapperClassName="col-sm-8" help={<p><Glyphicon glyph="question-sign"/> 如：Win-XP, Win7-32位/64位, Win8-32位/64位, Win10-32位/64位, OS X, Ubuntu-32位/64位</p>} />
           <Input type="textarea" rows={4} label="问题描述：" labelClassName="col-sm-2" wrapperClassName="col-sm-8" help={<p><Glyphicon glyph="question-sign"/> 请描述目前电脑的问题，电脑出现问题的前后，自己有哪些异常操作，最好能明确是需要的帮助是软件上的还是硬件上的。描述故障时，请尽量描述清楚下列事项：故障的现象（例如系统无法启动、运行时风扇狂转），故障持续时间等。</p>} />
-
         </form>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
       </div>
     )
   }
