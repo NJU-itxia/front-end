@@ -7,7 +7,7 @@ export default class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: "",
+      value          : "",
       submitClickable: false
     };
   }
@@ -36,7 +36,7 @@ export default class Login extends React.Component {
                 type="text"
                 value={this.state.value}
                 placeholder="手机号"
-                help={<p><Glyphicon glyph="question-sign"/> 手机号直接登陆，无需注册。</p>}
+                help={<p><Glyphicon glyph="question-sign"/> 手机号直接登录，无需注册。</p>}
                 bsStyle={this.validationState()}
                 bsSize="large"
                 hasFeedback
@@ -44,7 +44,7 @@ export default class Login extends React.Component {
                 groupClassName="group-class"
                 labelClassName="label-class"
                 onChange={() => this.setState({value: this.refs.input.getValue()}) } />
-              <ButtonInput type="submit" bsStyle="primary" block disabled={ !(this.validationState() == 'success') } >登录</ButtonInput>
+              <ButtonInput type="submit" bsStyle="primary" value="登录" block disabled={ !(this.validationState() == 'success') } />
             </form>
           </Col>
         </Row>

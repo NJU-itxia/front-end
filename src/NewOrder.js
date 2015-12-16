@@ -3,6 +3,52 @@ import { Row, Col, ButtonInput, FormControls, Image, Navbar, Nav, NavItem, Glyph
 
 
 export default class NewOrder extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      phone_number : "13260717593",
+      name         : "",
+      lilybbs_id   : "",
+      campus       : "gulou",
+      machine_model: "",
+      OS           : "",
+      description  : "",
+    };
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    Object.keys(this.state).map(k => this.state[k] = this.state[k].trim()) // 将字段前后的空白字符删除
+    $.ajax({
+      url        : 'http://localhost:5000/orders',
+      type       : 'POST',
+      dataType   : 'json',
+      contentType: "application/json",
+      data       : JSON.stringify(this.state),
+
+      success: function(data) {
+        $('#post_ret').show().text(JSON.stringify(data, null, '  '));
+        this.getOrder(data['_id']);
+      }.bind(this),
+
+      error: function(data) {
+        $('#post_ret').show().text(JSON.stringify(data, null, '  '));
+      }.bind(this),
+    });
+  }
+
+  getOrder(oid) {
+    $.ajax({
+      url     : 'http://localhost:5000/orders/' + oid,
+      type    : 'GET',
+      dataType: 'json',
+
+      success: function(data) {
+        $('#get_ret').show().text(JSON.stringify(data, null, '  '));
+      }.bind(this),
+    });
+  }
+
   render() {
     return (
       <div>
@@ -27,26 +73,82 @@ export default class NewOrder extends React.Component {
         </ol>
         <hr className="colorgraph" />
         <form className="form-horizontal">
-          <FormControls.Static type="text" label="手机：" labelClassName="col-sm-2" wrapperClassName="col-sm-8"><strong>13260717593</strong></FormControls.Static>
-          <Input type="text" label="姓名：" labelClassName="col-sm-2" wrapperClassName="col-sm-2" />
-          <Input type="text" label="小百合 ID：" labelClassName="col-sm-2" wrapperClassName="col-sm-5" help={<p><Glyphicon glyph="question-sign"/> 若没有小百合帐号可忽略此项，仅是用于区分是否为本校师生。</p>} />
+          <FormControls.Static type="text" label="手机：" labelClassName="col-sm-2" wrapperClassName="col-sm-8">
+            <strong>{this.state.phone_number}</strong>
+          </FormControls.Static>
+          <Input
+            type="text"
+            label="姓名："
+            labelClassName="col-sm-2"
+            wrapperClassName="col-sm-2"
+            value={this.state.name}
+            onChange={(e) => this.setState({name: e.target.value})} />
+          <Input
+            type="text"
+            label="小百合 ID："
+            labelClassName="col-sm-2"
+            wrapperClassName="col-sm-5"
+            value={this.state.lilybbs_id}
+            onChange={(e) => this.setState({lilybbs_id: e.target.value})}
+            help={<p><Glyphicon glyph="question-sign"/> 若没有小百合帐号可忽略此项，仅是用于区分是否为本校师生。</p>} />
           <div className="form-group">
-            <label for="inputLocal" className="col-sm-2 control-label">校区：</label>
-            <div className="col-sm-2">
-              <div className="radio">
-                <label><input type="radio" name="local" id="inputLocal" value="鼓楼" checked /> 鼓楼校区</label>
-              </div>
-            </div>
-            <div className="col-sm-2">
-              <div className="radio">
-                <label><input type="radio" name="local" id="inputLocal" value="仙林" /> 仙林校区</label>
-              </div>
+            <label htmlFor="campus" className="col-sm-2 control-label">校区：</label>
+            <div className="col-sm-8">
+              <label className="radio-inline col-sm-2">
+                <input
+                  type="radio"
+                  name="campus"
+                  defaultChecked
+                  value="gulou"
+                  onChange={(e) => this.setState({campus: e.target.value})} />
+                  鼓楼校区
+              </label>
+              <label className="radio-inline col-sm-2">
+                <input
+                  type="radio"
+                  name="campus"
+                  value="xianlin"
+                  onChange={(e) => this.setState({campus: e.target.value})} />
+                  仙林校区
+              </label>
             </div>
           </div>
-          <Input type="text" label="电脑型号：" labelClassName="col-sm-2" wrapperClassName="col-sm-8" help={<p><Glyphicon glyph="question-sign"/> 电脑型号可以查看发票、说明书标识，在电脑背面或电池下面也有电脑型号标签。</p>} />
-          <Input type="text" label="操作系统：" labelClassName="col-sm-2" wrapperClassName="col-sm-8" help={<p><Glyphicon glyph="question-sign"/> 如：Win-XP, Win7-32位/64位, Win8-32位/64位, Win10-32位/64位, OS X, Ubuntu-32位/64位</p>} />
-          <Input type="textarea" rows={4} label="问题描述：" labelClassName="col-sm-2" wrapperClassName="col-sm-8" help={<p><Glyphicon glyph="question-sign"/> 请描述目前电脑的问题，电脑出现问题的前后，自己有哪些异常操作，最好能明确是需要的帮助是软件上的还是硬件上的。描述故障时，请尽量描述清楚下列事项：故障的现象（例如系统无法启动、运行时风扇狂转），故障持续时间等。</p>} />
+          <Input
+            type="text"
+            label="电脑型号："
+            labelClassName="col-sm-2"
+            wrapperClassName="col-sm-8"
+            value={this.state.machine_model}
+            onChange={(e) => this.setState({machine_model: e.target.value})}
+            help={<p><Glyphicon glyph="question-sign"/> 电脑型号可以查看发票、说明书标识，在电脑背面或电池下面也有电脑型号标签。</p>} />
+          <Input
+            type="text"
+            label="操作系统："
+            labelClassName="col-sm-2"
+            wrapperClassName="col-sm-8"
+            value={this.state.OS}
+            onChange={(e) => this.setState({OS: e.target.value})}
+            help={<p><Glyphicon glyph="question-sign"/> 如：Win-XP, Win7-32位/64位, Win8-32位/64位, Win10-32位/64位, OS X, Ubuntu-32位/64位</p>} />
+          <Input
+            type="textarea"
+            rows={4}
+            label="问题描述："
+            labelClassName="col-sm-2"
+            wrapperClassName="col-sm-8"
+            value={this.state.description}
+            onChange={(e) => this.setState({description: e.target.value})}
+            help={<p><Glyphicon glyph="question-sign"/> 请描述目前电脑的问题，电脑出现问题的前后，自己有哪些异常操作，最好能明确是需要的帮助是软件上的还是硬件上的。描述故障时，请尽量描述清楚下列事项：故障的现象（例如系统无法启动、运行时风扇狂转），故障持续时间等。</p>} />
+          <div className="form-group">
+            <div className="col-sm-offset-2 col-sm-8">
+              <button className="btn btn-primary" type="submit" onClick={this.handleSubmit.bind(this)}>提交</button>
+              <p className="help-block">
+                <Glyphicon glyph="question-sign"/> 上面关于电脑的问题，请尽可能的全面，这样我们可以快速定位故障的原因。
+              </p>
+            </div>
+          </div>
         </form>
+        <pre id="post_ret" style={{display: 'none'}}></pre>
+        <pre id="get_ret" style={{display: 'none'}}></pre>
       </div>
     )
   }
