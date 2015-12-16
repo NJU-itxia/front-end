@@ -10,7 +10,7 @@ export default class App extends React.Component {
         <Navbar>
           <Navbar.Header className='navbar-header'>
             <Navbar.Brand>
-            <IndexLinkContainer to='/wait'>
+            <IndexLinkContainer to='/knight/wait'>
               <a>南京大学 IT 侠预约处理系统</a>
             </IndexLinkContainer>
             </Navbar.Brand>
@@ -19,13 +19,25 @@ export default class App extends React.Component {
 
           <Navbar.Collapse>
             <Nav>
-              <LinkContainer to="/wait">
+              <LinkContainer to="/knight/login">
+                <NavItem><Glyphicon glyph="wrench" /> 后台管理</NavItem>
+              </LinkContainer>
+              <LinkContainer to="/login">
+                <NavItem><Glyphicon glyph="user" /> 学生登录</NavItem>
+              </LinkContainer>
+              <LinkContainer to="/order">
+                <NavItem><Glyphicon glyph="list-alt" /> 当前请求</NavItem>
+              </LinkContainer>
+              <LinkContainer to="/history">
+                <NavItem><Glyphicon glyph="th-list" /> 历史请求</NavItem>
+              </LinkContainer>
+              <LinkContainer to="/knight/wait">
                 <NavItem><Glyphicon glyph="list-alt" /> 处理请求</NavItem>
               </LinkContainer>
-              <LinkContainer to="/message">
+              <LinkContainer to="/knight/message">
                 <NavItem><Glyphicon glyph="comment" /> 最近回复</NavItem>
               </LinkContainer>
-              <LinkContainer to="/setting">
+              <LinkContainer to="/knight/setting">
                 <NavItem><Glyphicon glyph="cog" /> 设置</NavItem>
               </LinkContainer>
             </Nav>

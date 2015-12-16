@@ -47,10 +47,10 @@ export default class Wait extends React.Component {
         <Row>
           <Col xs={12} sm={3}>
             <ListGroup>
-                <Link to="/wait" className="list-group-item list-group-item-warning" activeClassName="">
+                <Link to="/knight/wait" className="list-group-item list-group-item-warning" activeClassName="">
                   等待处理<Badge>11</Badge>
                 </Link>
-                <Link to="/setting" className="list-group-item" activeClassName="">
+                <Link to="/knight/setting" className="list-group-item" activeClassName="">
                   正在处理<Badge>3</Badge>
                 </Link>
                 <Link to="/logout" className="list-group-item" activeClassName="">
