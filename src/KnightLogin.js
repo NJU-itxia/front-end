@@ -52,7 +52,7 @@ export default class KnightLogin extends React.Component {
                 labelClassName="label-class"
                 required
                 onChange={() => this.setState({password: this.refs.password.getValue()}) } />
-              <ButtonInput type="submit" bsStyle="primary" block>登录</ButtonInput>
+              <ButtonInput type="submit" bsStyle="primary" value="登录" block />
             </form>
           </Col>
         </Row>
