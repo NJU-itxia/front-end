@@ -35,8 +35,8 @@ export default class Login extends React.Component {
               <Input
                 type="text"
                 value={this.state.value}
-                placeholder="手机号"
-                help={<p><Glyphicon glyph="question-sign"/> 手机号直接登录，无需注册。</p>}
+                placeholder="您的 11 位手机号码"
+                help={<p><Glyphicon glyph="question-sign"/> 请使用您的<strong className="text-warning">手机号码</strong>直接登录，无需注册。我们稍后会通过此号码以及本站的回复系统与您联系。</p>}
                 bsStyle={this.validationState()}
                 bsSize="large"
                 hasFeedback

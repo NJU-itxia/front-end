@@ -18,6 +18,17 @@ export default class NewOrder extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    if (this.state.phone_number.length  == 0 ||
+        this.state.name.length          == 0 ||
+        this.state.campus.length        == 0 ||
+        this.state.machine_model.length == 0 ||
+        this.state.OS.length            == 0 ||
+        this.state.description.length   == 0
+    ) {
+      console.error('除小百合 ID 之外，其他均为必填选项，请您把信息填写完整之后再提交。');
+      alert('除小百合 ID 之外，其他均为必填选项，请您把信息填写完整之后再提交。');
+      return;
+    };
     Object.keys(this.state).map(k => this.state[k] = this.state[k].trim()) // 将字段前后的空白字符删除
     $.ajax({
       url        : 'http://localhost:5000/orders',
@@ -52,14 +63,15 @@ export default class NewOrder extends React.Component {
   render() {
     return (
       <div>
-        <h1>你好，请提交你的请求</h1>
+        <h1>您好，请填写预约信息</h1>
         <hr className="colorgraph" />
-        <p>请定期登录看看 IT 侠是否回复，如果方便处理我们会尽快与你联系，另外 IT 侠也可能通过预留手机与你联系，不是所有的预约都能被解决。</p>
+        <h4 className="text-info">请定期登录查看 IT 侠是否回复，我们会尽快回应您的预约，另外 IT 侠也可能通过预留手机号码与您联系。不是所有的预约都能被解决。</h4>
+        <h3><strong>服务条款：</strong></h3>
         <ol>
-          <li>我们是纯公益组织不收取任何费用、纯公益性质；</li>
+          <li>我们是纯公益组织，不收取任何费用，属纯公益性质；</li>
           <li>服务对象仅限南大在校师生，以及为 IT 侠提供过捐助的爱心人士；</li>
           <li>IT 侠的服务由 NoteBook 版负责监管，不与任何商业团体挂钩；</li>
-          <li>视您的个人资料为绝密信息，保护隐私不外泄；</li>
+          <li>我们视您的个人资料为绝密信息，保证隐私不外泄；</li>
           <li>依业界惯例，IT 侠不对以下情形负责：
             <ul>
               <li>意外数据丢失；</li>
@@ -72,8 +84,13 @@ export default class NewOrder extends React.Component {
           <li>本活动的最终解释权归 <a href="http://bbs.nju.edu.cn/">小百合 NoteBook 版</a> 所有。</li>
         </ol>
         <hr className="colorgraph" />
-        <form className="form-horizontal">
-          <FormControls.Static type="text" label="手机：" labelClassName="col-sm-2" wrapperClassName="col-sm-8">
+        <form className="form-horizontal"  onSubmit={this.handleSubmit.bind(this)}>
+          <FormControls.Static
+            type="text"
+            label="手机号码："
+            labelClassName="col-sm-2"
+            wrapperClassName="col-sm-8"
+            help={<p><Glyphicon glyph="info-sign"/> 如需更换手机号码，请退出当前帐号并以新的手机号码登录。</p>}>
             <strong>{this.state.phone_number}</strong>
           </FormControls.Static>
           <Input
@@ -90,9 +107,9 @@ export default class NewOrder extends React.Component {
             wrapperClassName="col-sm-5"
             value={this.state.lilybbs_id}
             onChange={(e) => this.setState({lilybbs_id: e.target.value})}
-            help={<p><Glyphicon glyph="question-sign"/> 若没有小百合帐号可忽略此项，仅是用于区分是否为本校师生。</p>} />
+            help={<p><Glyphicon glyph="question-sign"/> 若没有小百合帐号可不填，此项仅用于区分是否为本校师生。</p>} />
           <div className="form-group">
-            <label htmlFor="campus" className="col-sm-2 control-label">校区：</label>
+            <label htmlFor="campus" className="col-sm-2 control-label">预约校区：</label>
             <div className="col-sm-8">
               <label className="radio-inline col-sm-2">
                 <input
@@ -128,7 +145,7 @@ export default class NewOrder extends React.Component {
             wrapperClassName="col-sm-8"
             value={this.state.OS}
             onChange={(e) => this.setState({OS: e.target.value})}
-            help={<p><Glyphicon glyph="question-sign"/> 如：Win-XP, Win7-32位/64位, Win8-32位/64位, Win10-32位/64位, OS X, Ubuntu-32位/64位</p>} />
+            help={<p><Glyphicon glyph="question-sign"/> 如：Win-XP, Win7-32位/64位, Win8-32位/64位, Win10-32位/64位, OS X, Ubuntu-32位/64位。</p>} />
           <Input
             type="textarea"
             rows={4}
@@ -137,12 +154,12 @@ export default class NewOrder extends React.Component {
             wrapperClassName="col-sm-8"
             value={this.state.description}
             onChange={(e) => this.setState({description: e.target.value})}
-            help={<p><Glyphicon glyph="question-sign"/> 请描述目前电脑的问题，电脑出现问题的前后，自己有哪些异常操作，最好能明确是需要的帮助是软件上的还是硬件上的。描述故障时，请尽量描述清楚下列事项：故障的现象（例如系统无法启动、运行时风扇狂转），故障持续时间等。</p>} />
+            help={<p><Glyphicon glyph="question-sign"/> 请尽可能全面地描述目前电脑出现的问题，以及电脑出现问题的前后，自己有哪些异常操作，这样我们可以快速定位故障的原因，最好能说明需要的帮助是软件上的还是硬件上的。描述故障时，请尽量描述清楚下列事项：故障的现象（例如系统无法启动、运行时风扇狂转），故障持续时间等。</p>} />
           <div className="form-group">
             <div className="col-sm-offset-2 col-sm-8">
-              <button className="btn btn-primary" type="submit" onClick={this.handleSubmit.bind(this)}>提交</button>
+              <button className="btn btn-primary" type="submit">提交</button>
               <p className="help-block">
-                <Glyphicon glyph="question-sign"/> 上面关于电脑的问题，请尽可能的全面，这样我们可以快速定位故障的原因。
+                <Glyphicon glyph="info-sign"/> 请您仔细阅读本页面上方的服务条款，点击提交按钮即视为您已同意此条款。<br/>
               </p>
             </div>
           </div>
