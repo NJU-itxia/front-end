@@ -3,26 +3,29 @@ import { Row, Col, ListGroup, ListGroupItem, Badge, Panel,
   ButtonToolbar, Button, Collapse, Input } from 'react-bootstrap';
 import { LinkContainer, IndexLinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router";
+import moment from 'moment';
 
 
-class ITxiaPanel extends React.Component {
+class Order extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      open: false,
+    };
   }
 
   render() {
     return (
-      <Panel header={<h3>苏小刚</h3>} bsStyle="warning">
-        <p><strong>提交时间: </strong>2015-11-10 15:13:08</p>
-        <p><strong>手机号码: </strong><a href="tel:15298386957">15298386957</a></p>
-        <p><strong>百合帐号: </strong>09xmsxg</p>
-        <p><strong>电脑型号: </strong>联想Y450</p>
-        <p><strong>操作系统: </strong>win7-32</p>
-        <p><strong>问题描述: </strong>运行一段时间自动关机（1小时、10分钟不等）。上学期因为开不了机在IT侠工作室修过。</p>
+      <Panel header={<h3>{this.props.order.name}</h3>} bsStyle="warning">
+        <p><strong>提交时间: </strong>{moment(this.props.order._created).format('YYYY-MM-DD HH:mm:ss')}</p>
+        <p><strong>手机号码: </strong><a href="tel:{this.props.order.phone_number}">{this.props.order.phone_number}</a></p>
+        <p><strong>百合帐号: </strong>{this.props.order.lilybbs_id}</p>
+        <p><strong>电脑型号: </strong>{this.props.order.machine_model}</p>
+        <p><strong>操作系统: </strong>{this.props.order.OS}</p>
+        <p><strong>问题描述: </strong>{this.props.order.description}</p>
         <ButtonToolbar>
           <Button bsStyle="info">我来处理</Button>
-          <Button onClick={ ()=> this.setState({ open: !this.state.open })}>展开回复信息 (0)</Button>
+          <Button disabled onClick={ ()=> this.setState({ open: !this.state.open })}>展开回复信息 (0)</Button>
         </ButtonToolbar>
         <Collapse in={this.state.open}>
           <div>
@@ -35,8 +38,69 @@ class ITxiaPanel extends React.Component {
     );
   }
 }
+Order.propTypes = {
+  order: React.PropTypes.object
+};
+Order.defaultProps = {
+  order: {}
+};
+
+
+
+class OrderList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    var orderlist = this.props.orders.map(function(order) {
+      return (
+        <Order key={order['_id']} order={order} />
+      )
+    });
+    return (
+      <div>{orderlist}</div>
+    );
+  }
+}
+OrderList.propTypes = {
+  orders: React.PropTypes.array
+};
+OrderList.defaultProps = {
+  orders: []
+};
+
+
+
 
 export default class Wait extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  get_orders() {
+    $.ajax({
+      url: 'http://localhost:5000/orders',
+      type: 'GET',
+      dataType: 'json',
+
+      success: function(data) {
+        var orders = data._items;
+        this.setState({orders: orders});
+      }.bind(this),
+
+      error: function() {
+        console.log(data);
+      }.bind(this),
+    });
+  }
+
+  componentDidMount() {
+    this.get_orders();
+  }
+
   render() {
     return (
       <div>
@@ -59,10 +123,10 @@ export default class Wait extends React.Component {
             </ListGroup>
           </Col>
           <Col xs={12} sm={6}>
-            <ITxiaPanel />
+            <OrderList orders={this.state.orders} />
           </Col>
         </Row>
       </div>
-    )
+    );
   }
 }

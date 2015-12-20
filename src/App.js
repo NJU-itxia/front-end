@@ -22,9 +22,9 @@ export default class App extends React.Component {
               <LinkContainer to="/knight/login">
                 <NavItem><Glyphicon glyph="wrench" /> 后台管理</NavItem>
               </LinkContainer>
-              <LinkContainer to="/login">
+              <IndexLinkContainer to="/login">
                 <NavItem><Glyphicon glyph="user" /> 学生登录</NavItem>
-              </LinkContainer>
+              </IndexLinkContainer>
               <LinkContainer to="/order">
                 <NavItem><Glyphicon glyph="list-alt" /> 当前请求</NavItem>
               </LinkContainer>
