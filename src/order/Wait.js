@@ -18,7 +18,7 @@ class Order extends React.Component {
     return (
       <Panel header={<h3>{this.props.order.name}</h3>} bsStyle="warning">
         <p><strong>提交时间: </strong>{moment(this.props.order._created).format('YYYY-MM-DD HH:mm:ss')}</p>
-        <p><strong>手机号码: </strong><a href="tel:{this.props.order.phone_number}">{this.props.order.phone_number}</a></p>
+        <p><strong>手机号码: </strong><a href={"tel:" + this.props.order.phone_number}>{this.props.order.phone_number}</a></p>
         <p><strong>百合帐号: </strong>{this.props.order.lilybbs_id}</p>
         <p><strong>电脑型号: </strong>{this.props.order.machine_model}</p>
         <p><strong>操作系统: </strong>{this.props.order.OS}</p>
