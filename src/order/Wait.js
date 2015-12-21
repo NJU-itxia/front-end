@@ -17,12 +17,14 @@ class Order extends React.Component {
   render() {
     return (
       <Panel header={<h3>{this.props.order.name}</h3>} bsStyle="warning">
-        <p><strong>提交时间: </strong>{moment(this.props.order._created).format('YYYY-MM-DD HH:mm:ss')}</p>
+        <p><strong>提交时间: </strong>{moment(this.props.order._created).utcOffset(8).format('YYYY-MM-DD HH:mm:ss')}</p>
         <p><strong>手机号码: </strong><a href={"tel:" + this.props.order.phone_number}>{this.props.order.phone_number}</a></p>
         <p><strong>百合帐号: </strong>{this.props.order.lilybbs_id}</p>
         <p><strong>电脑型号: </strong>{this.props.order.machine_model}</p>
         <p><strong>操作系统: </strong>{this.props.order.OS}</p>
         <p><strong>问题描述: </strong>{this.props.order.description}</p>
+        <p><strong>时间: </strong>{moment().utcOffset(0).format('ddd, DD MMM YYYY HH:mm:ss [GMT]')}</p>
+        <p><strong>时间: </strong>{moment().utcOffset(0).utcOffset(8).format('YYYY-MM-DD HH:mm:ss')}</p>
         <ButtonToolbar>
           <Button bsStyle="info">我来处理</Button>
           <Button disabled onClick={ ()=> this.setState({ open: !this.state.open })}>展开回复信息 (0)</Button>
@@ -77,7 +79,10 @@ OrderList.defaultProps = {
 export default class Wait extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      'total': 'loading',
+      'orders': []
+    };
   }
 
   get_orders() {
@@ -88,10 +93,12 @@ export default class Wait extends React.Component {
 
       success: function(data) {
         var orders = data._items;
+        var total = data._meta.total;
         this.setState({orders: orders});
+        this.setState({total: total});
       }.bind(this),
 
-      error: function() {
+      error: function(data) {
         console.log(data);
       }.bind(this),
     });
@@ -112,7 +119,7 @@ export default class Wait extends React.Component {
           <Col xs={12} sm={3}>
             <ListGroup>
                 <Link to="/knight/wait" className="list-group-item list-group-item-warning" activeClassName="">
-                  等待处理<Badge>11</Badge>
+                  等待处理<Badge>{this.state.total}</Badge>
                 </Link>
                 <Link to="/knight/setting" className="list-group-item" activeClassName="">
                   正在处理<Badge>3</Badge>
@@ -123,7 +130,7 @@ export default class Wait extends React.Component {
             </ListGroup>
           </Col>
           <Col xs={12} sm={6}>
-            <OrderList orders={this.state.orders} />
+            { this.state.total === 'loading' ? <p>正在载入……</p> : <OrderList orders={this.state.orders} />}
           </Col>
         </Row>
       </div>
