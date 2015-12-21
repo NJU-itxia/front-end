@@ -1,12 +1,13 @@
 import React from 'react';
 import { Row, Col, ButtonInput, FormControls, Image, Navbar, Nav, NavItem, Glyphicon, Input } from "react-bootstrap";
+import cookie from 'react-cookie';
 
 
 export default class NewOrder extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      phone_number : "13260717593",
+      phone_number : "",
       name         : "",
       lilybbs_id   : "",
       campus       : "gulou",
@@ -14,6 +15,10 @@ export default class NewOrder extends React.Component {
       OS           : "",
       description  : "",
     };
+  }
+
+  componentDidMount() {
+    this.setState({phone_number: cookie.load('userPhoneNumber').toString()});
   }
 
   handleSubmit(e) {
@@ -84,7 +89,7 @@ export default class NewOrder extends React.Component {
           <li>本活动的最终解释权归 <a href="http://bbs.nju.edu.cn/">小百合 NoteBook 版</a> 所有。</li>
         </ol>
         <hr className="colorgraph" />
-        <form className="form-horizontal"  onSubmit={this.handleSubmit.bind(this)}>
+        <form className="form-horizontal" onSubmit={this.handleSubmit.bind(this)}>
           <FormControls.Static
             type="text"
             label="手机号码："
