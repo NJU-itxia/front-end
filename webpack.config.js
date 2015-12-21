@@ -2,7 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  devtool: 'eval',
+  devtool: false,
   entry: [
     'webpack-dev-server/client?http://0.0.0.0:3009',
     'webpack/hot/only-dev-server',
@@ -14,7 +14,8 @@ module.exports = {
     publicPath: '/static/'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.optimize.UglifyJsPlugin({minimize: true})
   ],
   module: {
     loaders: [{
