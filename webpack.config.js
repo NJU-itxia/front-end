@@ -2,7 +2,8 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  devtool: false,
+  // devtool: false,
+  devtool: 'eval',
   entry: [
     'webpack-dev-server/client?http://0.0.0.0:3009',
     'webpack/hot/only-dev-server',
@@ -15,7 +16,7 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.optimize.UglifyJsPlugin({minimize: true})
+    // new webpack.optimize.UglifyJsPlugin({minimize: true})
   ],
   module: {
     loaders: [{
