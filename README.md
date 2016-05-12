@@ -1,3 +1,9 @@
+## 安装
+
+* 请使用Vagrant启动Ubuntu 14.04 64bit Server, 并修改apt源（推荐ustc源）
+* Nodejs安装（包含npm）： https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
+
+
 ## 启动方法：
 
 ```
