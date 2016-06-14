@@ -64,3 +64,4 @@ npm start
 * https://github.com/rackt/react-router
 * https://github.com/getify/You-Dont-Know-JS
 * https://github.com/nzakas/understandinges6
+* https://github.com/tech-dojo/react-showcase
