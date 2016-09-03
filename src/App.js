@@ -21,7 +21,7 @@ export default class App extends React.Component {
     } else if (cookie.load('itxiaLoggedIn')) {
       if (cookie.load('adminLoggedIn')) {
         this.setState({adminLoggedIn: true});
-      };
+      }
       this.setState({itxiaLoggedIn: true, userLoggedIn: true});
     }
   }
@@ -113,6 +113,12 @@ export default class App extends React.Component {
       <div className="container">
         {this.props.children}
       </div>
+      <footer className="page-footer">
+        <div className="container">
+          <hr className="colorgraph" />
+          <p className="text-center">Designed and built by LC &amp; 南京大学 IT 侠工作室</p>
+        </div>
+      </footer>
       </div>
     )
   }

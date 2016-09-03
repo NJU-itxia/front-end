@@ -59,10 +59,9 @@ function handleLogout(nextState, replaceState) {
 }
 
 
-
 const history = useBasename(createHistory)({
   basename: '/'
-})
+});
 
 
 const routeInstance = (
@@ -82,4 +81,4 @@ const routeInstance = (
 );
 
 
-ReactDOM.render(routeInstance, document.getElementById('app'))
+ReactDOM.render(routeInstance, document.getElementById('app'));

@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var DashboardPlugin = require('webpack-dashboard/plugin');
 
 module.exports = {
   // devtool: false,
@@ -16,6 +17,7 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new DashboardPlugin(),
     // new webpack.optimize.UglifyJsPlugin({minimize: true})
   ],
   module: {
