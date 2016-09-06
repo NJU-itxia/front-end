@@ -61,10 +61,10 @@ export default class App extends React.Component {
     var navbarStudent = (
       <Nav>
         <LinkContainer to="/order">
-          <NavItem><Glyphicon glyph="list-alt" /> 当前请求</NavItem>
+          <NavItem><Glyphicon glyph="list-alt" /> 当前预约</NavItem>
         </LinkContainer>
         <LinkContainer to="/history">
-          <NavItem><Glyphicon glyph="th-list" /> 历史请求</NavItem>
+          <NavItem><Glyphicon glyph="th-list" /> 历史预约</NavItem>
         </LinkContainer>
       </Nav>
     );

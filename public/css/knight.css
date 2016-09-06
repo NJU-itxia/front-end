@@ -7,6 +7,9 @@ body {
 	min-height: 100%;
 	padding-bottom: 100px;
 }
+.form-control {
+	padding: 6px 10px;
+}
 .page-footer {
 	position: absolute;
 	bottom: 0;
@@ -78,4 +81,8 @@ body {
 
 .glyphicon-remove {
 	cursor: pointer;
+}
+
+.table > tbody > tr > td {
+	vertical-align: middle;
 }

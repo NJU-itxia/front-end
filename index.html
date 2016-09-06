@@ -9,13 +9,21 @@
   <link rel="stylesheet" href="/public/css/bootstrap.min.css">
   <link rel="stylesheet" href="/public/css/knight.css">
   <!--[if lt IE 9]>
-    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+  <script>
+    (function(){
+      var ef = function(){};
+      window.console = window.console || {log:ef,warn:ef,error:ef,dir:ef};
+    }());
+  </script>
+  <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <script src="//cdn.bootcss.com/es5-shim/4.5.9/es5-shim.js"></script>
+  <script src="//cdn.bootcss.com/es5-shim/4.5.9/es5-sham.js"></script>
   <![endif]-->
 </head>
 <body>
   <div id='app'></div>
-  <script src="/public/js/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
   <script src="/public/js/bootstrap.min.js"></script>
   <script src="/static/bundle.js"></script>
 </body>

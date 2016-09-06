@@ -33,8 +33,8 @@ export default class NewOrder extends React.Component {
       console.error('除小百合 ID 之外，其他均为必填选项，请您把信息填写完整之后再提交。');
       alert('除小百合 ID 之外，其他均为必填选项，请您把信息填写完整之后再提交。');
       return;
-    };
-    Object.keys(this.state).map(k => this.state[k] = this.state[k].trim()) // 将字段前后的空白字符删除
+    }
+    Object.keys(this.state).map(k => this.state[k] = this.state[k].trim()); // 将字段前后的空白字符删除
     $.ajax({
       url        : 'http://localhost:5000/orders',
       type       : 'POST',

@@ -20,7 +20,7 @@ export default class Login extends React.Component {
       return 'success';
     } else if ( length > 0 && !reg.test(this.state.phone_number)) {
       return 'warning'
-    };
+    }
   }
 
   handleStudentLogin() {

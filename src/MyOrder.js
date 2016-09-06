@@ -31,7 +31,7 @@ export default class MyOrder extends React.Component {
     });
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.get_orders();
   }
 
@@ -39,7 +39,8 @@ export default class MyOrder extends React.Component {
   render() {
     return (
       <div>
-        <h2>我的所有历史订单</h2>
+        <h2>我的历史预约</h2>
+        <hr className="colorgraph" />
         <pre id="orders">无</pre>
       </div>
     )
