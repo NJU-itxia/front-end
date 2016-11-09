@@ -87,7 +87,7 @@ export default class Wait extends React.Component {
 
   get_orders() {
     $.ajax({
-      url: 'http://localhost:5000/orders',
+      url: 'http://api.pkuphy.me/orders',
       type: 'GET',
       dataType: 'json',
 

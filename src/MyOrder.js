@@ -13,7 +13,7 @@ export default class MyOrder extends React.Component {
 
   get_orders() {
     $.ajax({
-      url: 'http://localhost:5000/orders?where={"status": "waiting", "phone_number": "' + this.state.userPhoneNumber + '"}',
+      url: 'http://api.pkuphy.me/orders?where={"status": "waiting", "phone_number": "' + this.state.userPhoneNumber + '"}',
       type: 'GET',
       dataType: 'json',
 

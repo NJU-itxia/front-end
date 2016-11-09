@@ -36,7 +36,7 @@ export default class NewOrder extends React.Component {
     }
     Object.keys(this.state).map(k => this.state[k] = this.state[k].trim()); // 将字段前后的空白字符删除
     $.ajax({
-      url        : 'http://localhost:5000/orders',
+      url        : 'http://api.pkuphy.me/orders',
       type       : 'POST',
       dataType   : 'json',
       contentType: "application/json",
@@ -55,7 +55,7 @@ export default class NewOrder extends React.Component {
 
   getOrder(oid) {
     $.ajax({
-      url     : 'http://localhost:5000/orders/' + oid,
+      url     : 'http://api.pkuphy.me/orders/' + oid,
       type    : 'GET',
       dataType: 'json',
 
