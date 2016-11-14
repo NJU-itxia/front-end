@@ -1,5 +1,5 @@
 {
-  "name": "react-hot-boilerplate",
+  "name": "itxia-front-end",
   "version": "1.0.0",
   "scripts": {
     "start": "webpack-dashboard -- node devServer.js",
