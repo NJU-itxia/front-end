@@ -3,7 +3,6 @@ var webpack = require('webpack');
 var DashboardPlugin = require('webpack-dashboard/plugin');
 
 module.exports = {
-  // devtool: false,
   devtool: 'eval',
   entry: [
     'webpack-dev-server/client?http://0.0.0.0:3009',
@@ -11,9 +10,9 @@ module.exports = {
     './src/index'
   ],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, '/public/assets'),
     filename: 'bundle.js',
-    publicPath: '/static/'
+    publicPath: '/assets/'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

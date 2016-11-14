@@ -2,7 +2,7 @@
   "name": "react-hot-boilerplate",
   "version": "1.0.0",
   "scripts": {
-    "start": "webpack-dashboard -- node server.js",
+    "start": "webpack-dashboard -- node devServer.js",
     "lint": "eslint src"
   },
   "devDependencies": {
