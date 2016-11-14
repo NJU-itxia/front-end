@@ -28,7 +28,7 @@ export default class KnightLogin extends React.Component {
         <hr className="colorgraph" />
         <Row>
           <Col xs={12} sm={4} smOffset={4}>
-            <Image src="/public/img/logo.jpg" responsive style={{ margin: 'auto', marginBottom: 20 }}/>
+            <Image src="/img/logo.jpg" responsive style={{ margin: 'auto', marginBottom: 20 }}/>
             <Input
               type="text"
               value={this.state.username}

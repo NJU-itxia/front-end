@@ -4,6 +4,8 @@ import { createHistory, useBasename } from 'history';
 import { Router, Route, IndexRoute, Redirect, Link, IndexLink } from 'react-router';
 import cookie from 'react-cookie';
 
+import 'bootstrap/dist/js/bootstrap.min.js';
+
 import App from './App';
 import Wait from './order/Wait';
 import Message from './Message';

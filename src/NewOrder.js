@@ -68,7 +68,6 @@ export default class NewOrder extends React.Component {
   render() {
     return (
       <div>
-        <h1>您好，请填写预约信息</h1>
         <hr className="colorgraph" />
         <h4 className="text-info">请定期登录查看 IT 侠是否回复，我们会尽快回应您的预约，另外 IT 侠也可能通过预留手机号码与您联系。不是所有的预约都能被解决。</h4>
         <h3><strong>服务条款：</strong></h3>
