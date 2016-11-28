@@ -1,0 +1,113 @@
+.itxia-deal-requirement
+{
+
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	min-width: 820px;
+
+	> header
+	{
+		flex: 0 0 85px;
+		width: 100%;
+	}
+
+	> .main
+	{
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		> .slide
+		{
+			flex: 0 0 210px;
+			margin-right: 30px;
+
+			.list-group-item.selected
+			{
+				background: @selected-color;
+			}
+		}
+
+		> .content
+		{
+			flex: 1 0 455px;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: center;
+
+			> *
+			{
+				width: 455px;
+			}
+
+			> Search
+			{
+				height: 35px;
+			}
+		}
+
+	}
+
+	.icon-loading-circle, .icon-loading-points
+	{
+		width: 22px;
+		height: 22px;
+		float: right;
+		font-size: 22px;
+		padding: 0;
+		margin: 0;
+		transform-origin: 50% 50%;
+		animation: rotateLoop 2s linear infinite;
+		-webkit-animation: rotateLoop 2s linear infinite;
+		-moz-animation: rotateLoop 2s linear infinite;
+		-ms-animation: rotateLoop 2s linear infinite;
+	}
+
+	.icon-loading-circle::before, .icon-loading-points::before
+	{
+			position: relative;
+			top: -5px;
+			left: 0;
+	}
+
+}
+
+@keyframes rotateLoop
+{
+	0% { transform:rotate(0deg); }
+	25% { transform:rotate(90deg); }
+	50% { transform:rotate(180deg); }
+	75% { transform:rotate(270deg); }
+	100% { transform:rotate(360deg); }
+}
+
+@-webkit-keyframes rotateLoop
+{
+	0% { transform:rotate(0deg); }
+	25% { transform:rotate(90deg); }
+	50% { transform:rotate(180deg); }
+	75% { transform:rotate(270deg); }
+	100% { transform:rotate(360deg); }
+}
+
+@-moz-keyframes rotateLoop
+{
+	0%{-moz-transform:rotate(0deg);}
+	25%{-moz-transform:rotate(90deg);}
+	50%{-moz-transform:rotate(180deg);}
+	75%{-moz-transform:rotate(270deg);}
+	100%{-moz-transform:rotate(360deg);}
+}
+
+@-ms-keyframes rotateLoop
+{
+	0%{-ms-transform:rotate(0deg);}
+	25%{-ms-transform:rotate(90deg);}
+	50%{-ms-transform:rotate(180deg);}
+	75%{-ms-transform:rotate(270deg);}
+	100%{-ms-transform:rotate(360deg);}
+}

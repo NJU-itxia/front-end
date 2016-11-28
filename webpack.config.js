@@ -11,7 +11,7 @@ module.exports = {
 	    'webpack-dev-server/client?http://0.0.0.0:3009',
 	    'webpack/hot/only-dev-server',
 	    './src/index',
-			'./styles/knight.css'
+			'./src/resource/index.less'
 	  ],
 	},
   output: {
@@ -39,6 +39,10 @@ module.exports = {
 			{
         test: /\.css$/,
         loader: ExtractTextPlugin.extract("style-loader", "css-loader"),
+      },
+      {
+        test: /\.less$/,
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
       },
 			{
 				test: /\.(eot|svg|ttf|otf|woff2?)(\?\w+)?$/i,

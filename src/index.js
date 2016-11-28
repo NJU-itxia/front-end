@@ -9,7 +9,7 @@ import { Router, Route, IndexRoute, Redirect, Link, IndexLink } from 'react-rout
 import cookie from 'react-cookie';
 
 import App from './App';
-import Wait from './order/Wait';
+import DealRequirement from './order/DealRequirement';
 import Message from './Message';
 import Setting from './Setting';
 import Logout from './Logout';
@@ -76,7 +76,7 @@ const routeInstance = (
       <Route path="order" component={NewOrder} onEnter={requireStudentLogin} />
       <Route path="history" component={MyOrder} onEnter={requireStudentLogin} />
       <Route path="knight/login" component={KnightLogin} onEnter={handleIfLoggedIn} />
-      <Route path="knight/wait" component={Wait} onEnter={requireITXiaLogin} />
+      <Route path="knight/DealRequirement" component={ DealRequirement } onEnter={requireITXiaLogin} />
       <Route path="knight/message" component={Message} onEnter={requireITXiaLogin} />
       <Route path="knight/setting" component={Setting} onEnter={requireAdminLogin} />
       <Route path="logout" component={Logout} onEnter={handleLogout} />

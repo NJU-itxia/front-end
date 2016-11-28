@@ -91,10 +91,12 @@ export default class App extends React.Component {
         </LinkContainer>
       </Nav>
     );
-
+		const style = {
+			"marginBottom": 0
+		};
     return (
       <div>
-        <Navbar>
+        <Navbar style={ style }>
           <Navbar.Header className='navbar-header'>
             <Navbar.Brand>
             <IndexLinkContainer to='/login'>
