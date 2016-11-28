@@ -39,14 +39,21 @@ export default class Order extends Component
 			content: "just a test message"
 		}],
 		messageViewStatus: false,
+		deleteBtnsStatus: [false, false]
+	}
+
+	componentDidMount()
+	{
 
 	}
 
 	render()
 	{
 		const $messages = this.state.messages.map((item, index) => {
-			return (<div key={ index } className="item-content">
-					<div className="header-info"><strong>{ item.userName }</strong> { item.time }</div>
+			return (<div key={ index } ref={index} className="item-content" onMouseOver={ () => this._handleDeleteBtnShow.bind(this)(index, true) } onMouseLeave={ () => this._handleDeleteBtnShow.bind(this)(index, false) } >
+					<div className="header-info">
+						<span ref={ "deleteBtn" + index } className={ "iconfont icon-cha " + (this.state.deleteBtnsStatus[index] ? "v-show" : "v-hide") } onClick={ () => this._handleDeleteMessage.bind(this)(index) }></span>
+						<strong>{ item.userName }</strong> { item.time }</div>
 					<div className="content"> { item.content }</div>
 			</div>);
 		})
@@ -68,7 +75,7 @@ export default class Order extends Component
 			<Collapse refs="order-message-view" in={ this.state.messageViewStatus }>
 				<div className="message-content">
 					{ $messages }
-					<Input type="textarea" placeholder="请输入回复内容……" />
+					<Input className="textarea" type="textarea" placeholder="请输入回复内容……" />
 					<Button bsStyle="primary" block>回复</Button>
 				</div>
 			</Collapse>
@@ -86,4 +93,24 @@ export default class Order extends Component
 		alert("进行下一步处理");
 	}
 
+	_handleDeleteBtnShow(index, isShow)
+	{
+		const copy = this.state.deleteBtnsStatus;
+		copy[index] = isShow;
+		this.setState({
+			deleteBtnsStatus: copy
+		})
+	}
+
+	_handleDeleteMessage(index)
+	{
+		const cloneArr = this.state.messages.slice(0);
+		const copy = this.state.deleteBtnsStatus.slice(0);
+		cloneArr.splice(index, 1);
+		copy.splice(index, 1);
+		this.setState({
+			messages: cloneArr,
+			deleteBtnsStatus: copy
+		});
+	}
 }
