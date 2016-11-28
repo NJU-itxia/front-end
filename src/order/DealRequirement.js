@@ -13,7 +13,17 @@ export default class DealRequirement extends Component
 		constructor(props)
 		{
 			super(props);
-
+			this.styleMap = {
+				"waiting": "warning",
+				"dealing": "info",
+				"completed": "primary"
+			};
+			this.orderTypeArray = ["waiting", "dealing", "completed"];
+			this.orderLabelMap = {
+				"waiting": "等待处理",
+				"dealing": "正在处理",
+				"completed": "处理完成"
+			};
 		}
 
 		static PropTypes = {
@@ -28,10 +38,12 @@ export default class DealRequirement extends Component
 				loadState: true,
 				userId: "15950580528",
 				orderType: "waiting",
-				waitingOrders: [],
-				dealingOrders: [],
-				completedOrders: [],
-				searchContent: []
+				orders: {
+					waiting: [],
+					dealing: [],
+					completed: []
+				},
+				searchContent: ""
 		}
 
 		componentWillReceiveProps(nextProps)
@@ -60,8 +72,16 @@ export default class DealRequirement extends Component
 		}
 
 		render() {
-			const $waitingOrders = this.state.waitingOrders.map((item, index) => {
-				return (<Order key={ index }></Order>);
+			const showOrders = this.state.orders[this.state.orderType];
+
+			const $waitingOrders = showOrders.map((item, index) => {
+				return (<Order key={ index } style={ this.styleMap[this.state.orderType] } className="itxia-order"></Order>);
+			});
+
+			const $listGroup = 	this.orderTypeArray.map(item => {
+				return (<div key={item} className={ "list-group-item " + item } onClick={ this._getData.bind(this) }>
+					{ this.orderLabelMap[item] } { this.state.loadState ? <div className=' orderlist-load-icon iconfont icon-loading-points'></div> : <Badge> { this.state.orders[item].length } </Badge> }
+				</div>);
 			});
 
 			return (<div className="itxia-deal-requirement">
@@ -71,16 +91,8 @@ export default class DealRequirement extends Component
 			        </header>
 							<main className="main">
 								<div className="slide">
-									<ListGroup>
-			                <div className="list-group-item" activeClassName="list-group-item-warning" onClick={ this._getData.bind(this) }>
-			                  等待处理 { this.state.loadState ? <div className=' orderlist-load-icon iconfont icon-loading-points'></div> : <Badge> { this.state.waitingOrders.length } </Badge> }
-			                </div>
-			                <div className="list-group-item" activeClassName="list-group-item-info" onClick={ this._getData.bind(this) }>
-			                  正在处理 { this.state.loadState ? <div className=' orderlist-load-icon iconfont icon-loading-points'></div> : <Badge> { this.state.waitingOrders.length } </Badge> }
-			                </div>
-			                <div className="list-group-item" activeClassName="list-group-item-success" onClick={ this._getData.bind(this) }>
-			                  处理完成 { this.state.loadState ? <div className=' orderlist-load-icon iconfont icon-loading-points'></div> : <Badge> { this.state.waitingOrders.length } </Badge> }
-			                </div>
+									<ListGroup ref="list-group">
+			                { $listGroup }
 			            </ListGroup>
 								</div>
 								<div className="content">
@@ -116,14 +128,19 @@ export default class DealRequirement extends Component
 			event.persist();
 			$(event.target.parentNode.children).removeClass("selected");
 			event.target.classList.add("selected");
+			const type = event.target.classList.contains("waiting") ? "waiting" : (event.target.classList.contains("dealing") ? "dealing" : "completed");
 			this.setState({
-				loadState: true
+				loadState: true,
+
 			});
 			setTimeout(() => {
 				this.setState({
-					waitingOrders: [1, 2, 3, 4],
-					dealingOrders: [1, 2, 3, 4],
-					completedOrders: [1, 2, 3, 4],
+					orderType: type,
+					orders: {
+						waiting: [1, 2, 3, 4],
+						dealing: [1, 2, 3, 4],
+						completed: [1, 2, 4]
+					},
 					loadState: false
 				});
 			}, 1000);
