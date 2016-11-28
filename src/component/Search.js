@@ -10,11 +10,13 @@ export default class Search extends Component
 
 	static PropTypes = {
 		title: React.PropTypes.string,
-		handleChange: React.PropTypes.object.isRequired
+		handleChange: React.PropTypes.object.isRequired,
+		placeholder: React.PropTypes.string,
 	}
 
 	static defaultProps = {
-		title: ""
+		title: "",
+		placeholder: ""
 	}
 
 	state = {
@@ -30,7 +32,7 @@ export default class Search extends Component
 	render() {
 		return (<div className="itxia-search-view">
 				<span className="search-label">{ this.props.title }</span>
-				<input ref="input" type="search" onChange= { this._handleInputChange.bind(this) }/>
+				<input ref="input" type="search" placeholder={ this.props.placeholder } onChange= { this._handleInputChange.bind(this) }/>
 				<span className="iconfont icon-search"> </span>
 			</div>);
 	}

@@ -84,20 +84,10 @@ export default class DealRequirement extends Component
 			            </ListGroup>
 								</div>
 								<div className="content">
-									<Search title="记录搜索" handleChange={ this._handleSearchChange.bind(this) }></Search>
+									<Search title="记录搜索" placeholder="请输入" handleChange={ this._handleSearchChange.bind(this) }></Search>
 									{ $waitingOrders }
-
 								</div>
-
 							</main>
-			        {/* <Row className="orderlist-nav" onScroll={ this._handleScroll.bind(this) }>
-			          <Col ref="nav-float" xs={12} sm={3} >
-
-			          </Col>
-			          <Col xs={24} sm={6}>
-			           <p>正在载入……</p>
-			          </Col>
-			        </Row> */}
 			      </div>);
 		}
 

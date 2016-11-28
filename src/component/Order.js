@@ -29,6 +29,15 @@ export default class Order extends Component
 		machineModel: "联想",
 		OS: "window 10",
 		description: "暂无",
+		messages: [ {
+			userName: "test",
+			time:"2016-10-21 18:19:40",
+			content: "just a test message"
+		}, {
+			userName: "test",
+			time:"2016-10-21 18:19:40",
+			content: "just a test message"
+		}],
 		messageViewStatus: false,
 
 	}
@@ -36,6 +45,12 @@ export default class Order extends Component
 	render()
 	{
 		//moment(this.props.order._created).utcOffset(8).format('YYYY-MM-DD HH:mm:ss')
+		const $messages = this.state.messages.map((item, index) => {
+			return (<div key={ index }>
+					<h3><span>{ item.userName }</span> { item.time }</h3>
+					<div className="content"> { item.content }</div>
+			</div>);
+		})
 		return (<Panel className={ this.props.className } header={<h3>{this.state.name}</h3>} bsStyle="warning">
 			<p><strong>提交时间: </strong>{ this.state.createdTime }</p>
 			<p><strong>手机号码: </strong><a href={"tel:" + this.state.phoneNumber}>{this.state.phoneNumber}</a></p>
@@ -47,11 +62,14 @@ export default class Order extends Component
 			<p><strong>时间: </strong>{moment().utcOffset(0).utcOffset(8).format('YYYY-MM-DD HH:mm:ss')}</p> */}
 			<ButtonToolbar>
 				<Button bsStyle="info" onClick={ this._handleDeeperDeal.bind(this) }>我来处理</Button>
-				<Button disabled onClick={ this._handleReplyMessageShow.bind(this) }>展开回复信息 (0)</Button>
+				<Button onClick={ this._handleReplyMessageShow.bind(this) }>
+					{ this.state.messageViewStatus ? "收起回复信息(" + this.state.messages.length + ")"  : "展开回复信息(" + this.state.messages.length + ")" }
+				</Button>
 			</ButtonToolbar>
 			<Collapse refs="order-message-view" in={ this.state.messageViewStatus }>
 				<div>
 					<br />
+					{ $messages }
 					<Input type="textarea" placeholder="请输入回复内容……" />
 					<Button bsStyle="primary" block>回复</Button>
 				</div>
@@ -61,7 +79,8 @@ export default class Order extends Component
 
 	_handleReplyMessageShow()
 	{
-		this.setState({ messageViewStatus: !this.state.messageViewStatus });
+		const status = !this.state.messageViewStatus;
+		this.setState({ messageViewStatus: status });
 	}
 
 	_handleDeeperDeal()
