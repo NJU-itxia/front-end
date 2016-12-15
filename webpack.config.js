@@ -1,15 +1,13 @@
 var path = require('path');
 var webpack = require('webpack');
-var DashboardPlugin = require('webpack-dashboard/plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-  devtool: 'eval',
+  devtool: 'cheap-module-source-map',
   entry: {
 		vendor: ['jquery'],
 		app: [
-	    'webpack-dev-server/client?http://0.0.0.0:3009',
-	    'webpack/hot/only-dev-server',
+			'webpack-hot-middleware/client',
 	    './src/index',
 			'./src/resource/index.less'
 	  ],
@@ -26,7 +24,6 @@ module.exports = {
     }),
 		new ExtractTextPlugin("./[name]/bundle.css"),
     new webpack.HotModuleReplacementPlugin(),
-    new DashboardPlugin(),
     // new webpack.optimize.UglifyJsPlugin({minimize: true})
   ],
   module: {

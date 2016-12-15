@@ -4,8 +4,7 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createHistory, useBasename } from 'history';
-import { Router, Route, IndexRoute, Redirect, Link, IndexLink } from 'react-router';
+import { browserHistory, Router, Route, IndexRoute, Redirect, Link, IndexLink } from 'react-router';
 import cookie from 'react-cookie';
 
 import App from './App';
@@ -62,14 +61,8 @@ function handleLogout(nextState, replaceState) {
   replaceState({ nextPathname: nextState.location.pathname }, '/login');
 }
 
-
-const history = useBasename(createHistory)({
-  basename: '/'
-});
-
-
 const routeInstance = (
-  <Router history={history}>
+  <Router history={browserHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={Login} onEnter={handleIfLoggedIn} />
       <Route path="login" component={Login} onEnter={handleIfLoggedIn} />
