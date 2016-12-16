@@ -1,6 +1,6 @@
 import Store from './Store';
 
-export default class UserModel {
+class StudentModel {
 	constructor() {
 		this.listeners = [];
 		this.store = new Store('student');
@@ -28,3 +28,5 @@ export default class UserModel {
 
 	}
 }
+
+export default new StudentModel();

@@ -2,7 +2,7 @@
   "name": "itxia-front-end",
   "version": "1.0.0",
   "scripts": {
-    "start": "node ./lib/app.js",
+    "start": "babel-node ./lib/app.js",
     "lint": "eslint src"
   },
   "devDependencies": {
