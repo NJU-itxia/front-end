@@ -3,7 +3,7 @@ import { Navbar, Nav, NavItem, Glyphicon } from "react-bootstrap";
 import { LinkContainer, IndexLinkContainer } from "react-router-bootstrap";
 
 const style = {
-	"marginBottom": 0
+	"marginBottom": 0,
 };
 
 export default class Login extends Component {

@@ -7,6 +7,7 @@ const style = {
 };
 
 export default class App extends Component {
+
   render() {
     return (
       <div>
@@ -21,13 +22,12 @@ export default class App extends Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
-              <LinkContainer to="/knight/wait">
-                <NavItem><Glyphicon glyph="list-alt" /> 处理请求</NavItem>
+              <LinkContainer to="/order">
+                <NavItem><Glyphicon glyph="list-alt" /> 当前预约</NavItem>
               </LinkContainer>
-              <LinkContainer to="/knight/message">
-                <NavItem><Glyphicon glyph="comment" /> 最近回复</NavItem>
+              <LinkContainer to="/history">
+                <NavItem><Glyphicon glyph="th-list" /> 历史预约</NavItem>
               </LinkContainer>
-              {this.state.adminLoggedIn ? navbarAdmin : null}
             </Nav>
             <Nav pullRight>
               <LinkContainer to="/logout" onClick={this.handleLogout.bind(this)}>

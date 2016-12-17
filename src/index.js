@@ -9,16 +9,16 @@ import cookie from 'react-cookie';
 
 import App from './App';
 
-import LoginApp from './component/login/App';
+import LoginApp from './component/login/Login';
 import StudentLogin from './component/login/Student';
 import KnightLogin from './component/login/Knight';
 
-import StudentApp from './component/student/App';
+import StudentApp from './component/student/Student';
 import NewOrder from './component/student/NewOrder';
 import MyOrder from './component/student/MyOrder';
 import Logout from './component/student/Logout';
 
-import KnightApp from './component/knight/App';
+import KnightApp from './component/knight/Knight';
 import Orders from './component/knight/order/Orders';
 import Message from './component/knight/Message';
 import Setting from './component/knight/Setting';

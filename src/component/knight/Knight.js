@@ -1,13 +1,13 @@
-import React from 'react';
-import {Navbar, Nav, NavItem, Glyphicon} from "react-bootstrap";
+import React, { Component } from 'react';
+import { Navbar, Nav, NavItem, Glyphicon } from "react-bootstrap";
 import { LinkContainer, IndexLinkContainer } from "react-router-bootstrap";
 
-export default class App extends React.Component {
+const style = {
+	"marginBottom": 0,
+};
 
+export default class App extends Component {
   render() {
-		const style = {
-			"marginBottom": 0
-		};
     return (
       <div>
         <Navbar style={ style }>
@@ -21,12 +21,13 @@ export default class App extends React.Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
-              <LinkContainer to="/order">
-                <NavItem><Glyphicon glyph="list-alt" /> 当前预约</NavItem>
+              <LinkContainer to="/knight/wait">
+                <NavItem><Glyphicon glyph="list-alt" /> 处理请求</NavItem>
               </LinkContainer>
-              <LinkContainer to="/history">
-                <NavItem><Glyphicon glyph="th-list" /> 历史预约</NavItem>
+              <LinkContainer to="/knight/message">
+                <NavItem><Glyphicon glyph="comment" /> 最近回复</NavItem>
               </LinkContainer>
+              {this.state.adminLoggedIn ? navbarAdmin : null}
             </Nav>
             <Nav pullRight>
               <LinkContainer to="/logout" onClick={this.handleLogout.bind(this)}>
@@ -45,6 +46,6 @@ export default class App extends React.Component {
         </div>
       </footer>
       </div>
-    )
+    );
   }
 }
