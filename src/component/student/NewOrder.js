@@ -1,24 +1,20 @@
 import React from 'react';
-import { Row, Col, ButtonInput, FormControls, Image, Navbar, Nav, NavItem, Glyphicon, Input } from "react-bootstrap";
-import cookie from 'react-cookie';
+// import { Row, Col, ButtonInput, FormControls, Image, Navbar, Nav, NavItem, Glyphicon, Input } from "react-bootstrap";
+import { Row, Col, Button, Image, Glyphicon, FormGroup, FormControl, HelpBlock, ControlLabel } from 'react-bootstrap';
 
 
 export default class NewOrder extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      phone_number : "",
-      name         : "",
-      lilybbs_id   : "",
-      campus       : "gulou",
+      phone_number: "",
+      name: "",
+      email: "",
+      campus: "gulou",
       machine_model: "",
-      OS           : "",
-      description  : "",
+      OS: "",
+      description: "",
     };
-  }
-
-  componentDidMount() {
-    this.setState({phone_number: cookie.load('userPhoneNumber').toString()});
   }
 
   handleSubmit(e) {
@@ -89,22 +85,22 @@ export default class NewOrder extends React.Component {
         </ol>
         <hr className="colorgraph" />
         <form className="form-horizontal" onSubmit={this.handleSubmit.bind(this)}>
-          <FormControls.Static
+          <FormControl.Static
             type="text"
             label="手机号码："
             labelClassName="col-sm-2"
             wrapperClassName="col-sm-8"
             help={<p><Glyphicon glyph="info-sign"/> 如需更换手机号码，请退出当前帐号并以新的手机号码登录。</p>}>
             <strong>{this.state.phone_number}</strong>
-          </FormControls.Static>
-          <Input
+          </FormControl.Static>
+          <FormControl
             type="text"
             label="姓名："
             labelClassName="col-sm-2"
             wrapperClassName="col-sm-2"
             value={this.state.name}
             onChange={(e) => this.setState({name: e.target.value})} />
-          <Input
+          <FormControl
             type="text"
             label="小百合 ID："
             labelClassName="col-sm-2"
@@ -134,7 +130,7 @@ export default class NewOrder extends React.Component {
               </label>
             </div>
           </div>
-          <Input
+          <FormControl
             type="text"
             label="电脑型号："
             labelClassName="col-sm-2"
@@ -142,7 +138,7 @@ export default class NewOrder extends React.Component {
             value={this.state.machine_model}
             onChange={(e) => this.setState({machine_model: e.target.value})}
             help={<p><Glyphicon glyph="question-sign"/> 电脑型号可以查看发票、说明书标识，在电脑背面或电池下面也有电脑型号标签。</p>} />
-          <Input
+          <FormControl
             type="text"
             label="操作系统："
             labelClassName="col-sm-2"
@@ -150,7 +146,7 @@ export default class NewOrder extends React.Component {
             value={this.state.OS}
             onChange={(e) => this.setState({OS: e.target.value})}
             help={<p><Glyphicon glyph="question-sign"/> 如：Win-XP, Win7-32位/64位, Win8-32位/64位, Win10-32位/64位, OS X, Ubuntu-32位/64位。</p>} />
-          <Input
+          <FormControl
             type="textarea"
             rows={4}
             label="问题描述："

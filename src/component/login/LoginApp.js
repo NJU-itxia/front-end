@@ -12,14 +12,13 @@ export default class Login extends Component {
 	}
 
   render() {
-		console.log("login app");
     return (
       <div>
         <Navbar style={style}>
           <Navbar.Header className="navbar-header">
             <LinkContainer to="/login">
 							<Navbar.Brand>
-	              <a>南京大学 IT 侠预约处理系统</a>
+	              <a href="/">南京大学 IT 侠预约处理系统</a>
 							</Navbar.Brand>
             </LinkContainer>
           </Navbar.Header>

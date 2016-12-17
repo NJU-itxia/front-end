@@ -20,7 +20,7 @@ class StudentModel {
 	}
 
 	notifyAll() {
-		listeners.forEach(listener => listener());
+		this.listeners.forEach(listener => listener());
 	}
 
 	async login(username, password) {
