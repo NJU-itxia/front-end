@@ -25,10 +25,10 @@ export default class Login extends Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
-              <LinkContainer to="/login">
+              <LinkContainer to="/login/student">
                 <NavItem><Glyphicon glyph="user" /> 学生登录</NavItem>
               </LinkContainer>
-              <LinkContainer to="/knight/login">
+              <LinkContainer to="/login/knight">
                 <NavItem><Glyphicon glyph="wrench" /> 后台管理</NavItem>
               </LinkContainer>
             </Nav>

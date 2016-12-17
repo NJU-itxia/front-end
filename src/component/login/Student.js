@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Row, Col, Button, Image, Glyphicon, FormGroup, FormControl, HelpBlock, ControlLabel } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import cookie from 'react-cookie';
 
-export default class Login extends React.Component {
+export default class Login extends Component {
   state = {
     account: '',
     password: '',
@@ -34,6 +33,8 @@ export default class Login extends React.Component {
 							<HelpBlock>
 								<p><Glyphicon glyph="question-sign"/> 请使用您的<strong>手机号码</strong>直接登录，无需注册。我们稍后会通过此号码以及本站的回复系统与您联系。</p>
 							</HelpBlock>
+						</FormGroup>
+						<FormGroup>
 							<FormControl
 								type="password"
 								value={password}
@@ -69,7 +70,6 @@ export default class Login extends React.Component {
   }
 
   handleFormSubmit = (e) => {
-
     e.preventDefault();
   }
 
