@@ -14,7 +14,7 @@ class Student extends Component {
           <Navbar.Header className='navbar-header'>
             <IndexLinkContainer to='/login'>
 							<Navbar.Brand>
-              	<a>南京大学 IT 侠预约处理系统</a>
+              	<a href="/">南京大学 IT 侠预约处理系统</a>
 							</Navbar.Brand>
             </IndexLinkContainer>
             <Navbar.Toggle />
