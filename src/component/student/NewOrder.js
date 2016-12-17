@@ -1,7 +1,7 @@
 import React from 'react';
-// import { Row, Col, ButtonInput, FormControls, Image, Navbar, Nav, NavItem, Glyphicon, Input } from "react-bootstrap";
 import { Row, Col, Button, Image, Glyphicon, FormGroup, FormControl, HelpBlock, ControlLabel } from 'react-bootstrap';
 
+import model from '../../model/student';
 
 export default class NewOrder extends React.Component {
   constructor(props) {
@@ -91,7 +91,7 @@ export default class NewOrder extends React.Component {
             labelClassName="col-sm-2"
             wrapperClassName="col-sm-8"
           >
-            <strong>{this.state.phone_number}</strong>
+            <strong>{model.user.phoneNumber}</strong>
           </FormControl.Static>
 					<HelpBlock>
 						<Glyphicon glyph="question-sign"/> 如需更换手机号码，请退出当前帐号并以新的手机号码登录。

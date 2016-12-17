@@ -10,7 +10,7 @@ class Student extends Component {
   render() {
     return (
       <div>
-        <Navbar style={ style }>
+        <Navbar style={style}>
           <Navbar.Header className='navbar-header'>
             <IndexLinkContainer to='/login'>
 							<Navbar.Brand>
