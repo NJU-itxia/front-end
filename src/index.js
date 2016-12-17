@@ -11,15 +11,14 @@ import LoginApp from './component/login/App';
 import StudentLogin from './component/login/Student';
 import KnightLogin from './component/login/Knight';
 
-import StudentApp from './conponent/student/App';
+import StudentApp from './component/student/App';
 import NewOrder from './component/student/NewOrder';
 import MyOrder from './component/student/MyOrder';
-import Logout from './components/student/Logout';
+import Logout from './component/student/Logout';
 
 import Orders from './component/knight/order/Orders';
 import Message from './component/knight/Message';
 import Setting from './component/knight/Setting';
-import KnightLogin from './component/knight/KnightLogin';
 
 function redirectIfLoggedIn(nextState, replaceState) {
   if (cookie.load('studentLoggedIn')) {

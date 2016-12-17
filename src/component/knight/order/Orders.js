@@ -5,8 +5,8 @@ import { LinkContainer, IndexLinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router";
 import moment from 'moment';
 
-import Search from "../component/Search";
-import Order from "../component/Order";
+import Search from "../Search";
+import Order from "./Order";
 
 export default class DealRequirement extends Component
 {
