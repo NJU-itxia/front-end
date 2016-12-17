@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Navbar, Nav, NavItem, Glyphicon } from "react-bootstrap";
 import { LinkContainer, IndexLinkContainer } from "react-router-bootstrap";
 
@@ -6,8 +6,7 @@ const style = {
 	"marginBottom": 0
 };
 
-export default class App extends Component {
-
+class Student extends Component {
   render() {
     return (
       <div>
@@ -46,6 +45,8 @@ export default class App extends Component {
         </div>
       </footer>
       </div>
-    )
+    );
   }
 }
+
+export default Student;

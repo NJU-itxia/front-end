@@ -1,3 +1,4 @@
+const API_URL = 'http://localhost:3009/api';
 
 class StudentModel {
 	constructor() {
@@ -23,7 +24,15 @@ class StudentModel {
 	}
 
 	async login(username, password) {
-
+		const promise = $.ajax({
+			url: API_URL + '/auth/student',
+			method: 'POST',
+			data: {
+				username,
+				password,
+			},
+		});
+		return promise;
 	}
 }
 

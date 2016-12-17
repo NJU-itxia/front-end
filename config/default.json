@@ -1,0 +1,6 @@
+{
+	"cookie_secret": "Annyeong",
+	"cookie_path": {
+		"name": "uname"
+	}
+}

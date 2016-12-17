@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap-theme.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { browserHistory, Router, Route, IndexRoute, Redirect, Link, IndexLink } from 'react-router';
+import { browserHistory, Router, Route, IndexRedirect, Redirect, Link, IndexLink } from 'react-router';
 
 import App from './App';
 
@@ -42,9 +42,8 @@ function requireKnightLogin() {
 const router = (
   <Router history={browserHistory}>
 		<Route path="/" component={App}>
-      <IndexRoute component={LoginApp} />
+      <IndexRedirect to="/login/student" />
       <Route path="login" component={LoginApp} onEnter={redirectIfLoggedIn}>
-				<IndexRoute component={StudentLogin} />
         <Route path="student" component={StudentLogin} />
         <Route path="knight" component={KnightLogin} />
       </Route>
@@ -62,4 +61,10 @@ const router = (
   </Router>
 );
 
-ReactDOM.render(router, document.getElementById('app'));
+function render() {
+	ReactDOM.render(router, document.getElementById('app'));
+}
+
+studentModel.subscribe(render);
+
+render();

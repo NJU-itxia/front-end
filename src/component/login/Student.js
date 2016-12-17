@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import { Row, Col, Button, Image, Glyphicon, FormGroup, FormControl, HelpBlock, ControlLabel } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import { Row, Col, Button, Image, Glyphicon, FormGroup, FormControl, HelpBlock, ControlLabel } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+
+import model from '../../model/student';
 
 export default class Login extends Component {
   state = {
@@ -70,6 +72,11 @@ export default class Login extends Component {
   }
 
   handleFormSubmit = (e) => {
+		model.login(this.state.account, this.state.password).then((response) => {
+
+		}, (reason) => {
+
+		});
     e.preventDefault();
   }
 
