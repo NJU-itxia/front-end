@@ -1,9 +1,7 @@
-import Store from './Store';
 
 class StudentModel {
 	constructor() {
 		this.listeners = [];
-		this.store = new Store('student');
 	}
 
 	subscribe(listener) {
