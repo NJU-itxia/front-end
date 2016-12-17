@@ -26,9 +26,6 @@ function redirectIfLoggedIn(nextState, replaceState) {
   // if (cookie.load('studentLoggedIn')) {
   //   replaceState({ nextPathname: nextState.location.pathname }, '/order');
   // }
-  // else if (cookie.load('itxiaLoggedIn')) {
-  //   replaceState({ nextPathname: nextState.location.pathname }, '/knight/wait');
-  // }
 }
 
 function requireStudentLogin() {
@@ -43,7 +40,11 @@ const routes = (
   <Router history={browserHistory}>
 		<Route path="/" component={App}>
       <IndexRedirect to="/login/student" />
-      <Route path="login" component={LoginApp} onEnter={redirectIfLoggedIn}>
+      <Route
+				path="login"
+				component={LoginApp}
+				onEnter={redirectIfLoggedIn}
+			>
         <Route path="student" component={StudentLogin} />
         <Route path="knight" component={KnightLogin} />
       </Route>
@@ -56,7 +57,11 @@ const routes = (
         <Route path="history" component={MyOrder} />
         <Route path="logout" component={Logout} />
       </Route>
-      <Route path="knight" component={KnightApp} onEnter={requireKnightLogin}>
+      <Route
+				path="knight"
+				component={KnightApp}
+				onEnter={requireKnightLogin}
+			>
         <Route path="orders" component={ Orders } />
         <Route path="message" component={Message} />
         <Route path="setting" component={Setting} />
