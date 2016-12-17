@@ -24,15 +24,20 @@ class StudentModel {
 	}
 
 	async login(username, password) {
-		const promise = $.ajax({
+		return $.ajax({
 			url: API_URL + '/auth/student',
 			method: 'POST',
 			data: {
 				username,
 				password,
 			},
+		}).then(response => {
+			if (response.error) {
+				return Promise.reject(response.error);
+			}
+			this.user = response;
+			console.log(this.user);
 		});
-		return promise;
 	}
 }
 

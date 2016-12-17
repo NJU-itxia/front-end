@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Row, Col, Button, Image, Glyphicon, FormGroup, FormControl, HelpBlock, ControlLabel } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import { browserHistory } from 'react-router';
 
 import model from '../../model/student';
 
@@ -73,9 +74,9 @@ export default class Login extends Component {
 
   handleFormSubmit = (e) => {
 		model.login(this.state.account, this.state.password).then((response) => {
-
+      browserHistory.push('/student/order');
 		}, (reason) => {
-
+      console.error(reason);
 		});
     e.preventDefault();
   }
