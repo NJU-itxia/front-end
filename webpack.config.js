@@ -5,7 +5,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
   devtool: 'cheap-module-source-map',
   entry: {
-		vendor: ['jquery'],
+		vendor: ['jquery', 'babel-polyfill'],
 		app: [
 			'webpack-hot-middleware/client',
 	    './src/index',

@@ -1,9 +1,8 @@
-import Store from './Store';
+const API_URL = 'http://localhost:3009/api';
 
 class StudentModel {
 	constructor() {
 		this.listeners = [];
-		this.store = new Store('student');
 	}
 
 	subscribe(listener) {
@@ -21,11 +20,24 @@ class StudentModel {
 	}
 
 	notifyAll() {
-		listeners.forEach(listener => listener());
+		this.listeners.forEach(listener => listener());
 	}
 
 	async login(username, password) {
-
+		return $.ajax({
+			url: API_URL + '/auth/student',
+			method: 'POST',
+			data: {
+				username,
+				password,
+			},
+		}).then(response => {
+			if (response.error) {
+				return Promise.reject(response.error);
+			}
+			this.user = response;
+			console.log(this.user);
+		});
 	}
 }
 
