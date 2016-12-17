@@ -26,10 +26,12 @@ export default class Login extends Component {
 								type="text"
 								value={account}
 								placeholder="用户名"
-								bsStyle={this.validateState()}
 								bsSize="large"
 								onChange={this.handleAccountChange}
 							/>
+							<HelpBlock>
+								<p><Glyphicon glyph="question-sign"/>开发账号密码为test</p>
+							</HelpBlock>
 						</FormGroup>
 						<FormGroup>
 							<FormControl
@@ -41,7 +43,6 @@ export default class Login extends Component {
 							/>
 						</FormGroup>
 						<Button
-							disabled={!this.validateState()}
 							onClick={this.handleFormSubmit.bind(this)}
 							bsStyle="primary"
 							block
@@ -67,18 +68,6 @@ export default class Login extends Component {
   }
 
   handleFormSubmit = (e) => {
-
     e.preventDefault();
   }
-
-	validateState() {
-		let length = this.state.account.length;
-		let reg = /^(13|14|15|17|18)[0-9]{9}$/;
-
-		if (length > 0 && reg.test(this.state.account)) {
-			return 'success';
-		} else if ( length > 0 && !reg.test(this.state.account)) {
-			return 'warning';
-		}
-	}
 }
