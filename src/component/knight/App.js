@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { Navbar, Nav, NavItem, Glyphicon } from "react-bootstrap";
 import { LinkContainer, IndexLinkContainer } from "react-router-bootstrap";
 
+const style = {
+	"marginBottom": 0
+};
+
 export default class App extends Component {
   render() {
-		const style = {
-			"marginBottom": 0
-		};
     return (
       <div>
         <Navbar style={ style }>

@@ -7,6 +7,8 @@ import ReactDOM from 'react-dom';
 import { browserHistory, Router, Route, IndexRoute, Redirect, Link, IndexLink } from 'react-router';
 import cookie from 'react-cookie';
 
+import App from './App';
+
 import LoginApp from './component/login/App';
 import StudentLogin from './component/login/Student';
 import KnightLogin from './component/login/Knight';
@@ -16,6 +18,7 @@ import NewOrder from './component/student/NewOrder';
 import MyOrder from './component/student/MyOrder';
 import Logout from './component/student/Logout';
 
+import KnightApp from './component/knight/App';
 import Orders from './component/knight/order/Orders';
 import Message from './component/knight/Message';
 import Setting from './component/knight/Setting';
@@ -39,9 +42,10 @@ function requireKnightLogin() {
 
 const router = (
   <Router history={browserHistory}>
-    <Route path="/" component={App}>
-      <IndexRoute component={Login} />
+		<Route path="/" component={App}>
+      <IndexRoute component={LoginApp} />
       <Route path="login" component={LoginApp} onEnter={redirectIfLoggedIn}>
+				<IndexRoute component={StudentLogin} />
         <Route path="student" component={StudentLogin} />
         <Route path="knight" component={KnightLogin} />
       </Route>
@@ -51,11 +55,11 @@ const router = (
         <Route path="logout" component={Logout} />
       </Route>
       <Route path="knight" component={KnightApp} onEnter={requireKnightLogin}>
-        <Route path="orders" component={ DealRequirement } onEnter={requireITXiaLogin} />
-        <Route path="message" component={Message} onEnter={requireITXiaLogin} />
-        <Route path="setting" component={Setting} onEnter={requireAdminLogin} />
+        <Route path="orders" component={ Orders } />
+        <Route path="message" component={Message} />
+        <Route path="setting" component={Setting} />
       </Route>
-    </Route>
+		</Route>
   </Router>
 );
 

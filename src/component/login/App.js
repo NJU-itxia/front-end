@@ -1,17 +1,27 @@
-import { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { Navbar, Nav, NavItem, Glyphicon } from "react-bootstrap";
+import { LinkContainer, IndexLinkContainer } from "react-router-bootstrap";
+
+const style = {
+	"marginBottom": 0
+};
 
 export default class Login extends Component {
+	static propTypes = {
+		children: PropTypes.element.isRequired,
+	}
+
   render() {
+		console.log("login app");
     return (
       <div>
-        <Navbar style={ style }>
-          <Navbar.Header className='navbar-header'>
-            <Navbar.Brand>
-            <IndexLinkContainer to='/login'>
-              <a>南京大学 IT 侠预约处理系统</a>
-            </IndexLinkContainer>
-            </Navbar.Brand>
-            <Navbar.Toggle />
+        <Navbar style={style}>
+          <Navbar.Header className="navbar-header">
+            <LinkContainer to="/login">
+							<Navbar.Brand>
+	              <a>南京大学 IT 侠预约处理系统</a>
+							</Navbar.Brand>
+            </LinkContainer>
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
