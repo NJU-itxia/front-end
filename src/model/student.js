@@ -23,7 +23,7 @@ class StudentModel {
 		this.listeners.forEach(listener => listener());
 	}
 
-	async login(username, password) {
+	login(username, password) {
 		return $.ajax({
 			url: API_URL + '/auth/student',
 			method: 'POST',
@@ -36,7 +36,6 @@ class StudentModel {
 				return Promise.reject(response.error);
 			}
 			this.user = response;
-			console.log(this.user);
 		});
 	}
 }
