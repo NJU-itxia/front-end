@@ -43,7 +43,6 @@
     "react-dom": "^15.4.1",
     "react-router": "^3.0.0",
     "react-router-bootstrap": "^0.23.1",
-    "react-router-redux": "^4.0.5"
   },
   "description": "* ``VirtualBox``提供了虚拟机底层的实现，以及GUI管理界面（虽有VBoxManage命令行，但并不好用）\r * ``Vagrant``提供了更简单的命令行对VirtualBox进行操作，使用Vagrantfile文件来配置虚拟机，以及将各系统打包成.box文件进行分发\r * 因此，Vagrant依赖于VirtualBox\r * 虚拟机里运行的系统叫Guest OS，物理机上叫Host OS，两者之间相互隔离，只有两方面可以互通：\r   * 网络互通：通过Port Forwarding实现,同时Guest OS里的程序需要监听``0.0.0.0``，而非``127.0.0.1``。因为前后端分离，所以需要在2个端口上互通。\r   * 文件系统互通：通过Shared Folder实现，即Guest OS里的``/vagrant``和Host OS里的box所在文件夹是一样的，代码就放在这个文件夹里即可",
   "main": "devServer.js",
