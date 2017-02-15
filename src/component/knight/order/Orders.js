@@ -7,17 +7,13 @@ import moment from 'moment';
 
 import Search from "../Search";
 import Order from "./Order";
+import OrderModel from './OrderModel';
 
-export default class DealRequirement extends Component
+export default class Orders extends Component
 {
 		constructor(props)
 		{
 			super(props);
-			this.styleMap = {
-				"waiting": "warning",
-				"dealing": "info",
-				"completed": "primary"
-			};
 			this.orderTypeArray = ["waiting", "dealing", "completed"];
 			this.orderLabelMap = {
 				"waiting": "等待处理",
@@ -39,55 +35,42 @@ export default class DealRequirement extends Component
 				userId: "15950580528",
 				orderType: "waiting",
 				orders: {
-					waiting: [],
-					dealing: [],
-					completed: []
+					waiting: this.getTempData('waiting'),
+					dealing: this.getTempData('dealing'),
+					completed: this.getTempData('completed')
 				},
 				searchContent: ""
 		}
 
-		componentWillReceiveProps(nextProps)
-		{
+		componentWillReceiveProps(nextProps) {
 
 		}
 
-		componentDidMount()
-		{
-			// $(window).scroll((event) => {
-			// 	const height = $(window).scrollTop();
-			// 	if (height < 133)
-			// 	{
-			// 		return;
-			// 	}
-			//
-			// 	const diff = height - 133;
-			//
-			// 	console.log(this.refs["nav-float"].marginTop);
-			// 	this.refs["nav-float"].style.marginTop = diff + "px";
-			//
-			// });
-			// $(window).scroll(() => {
-			// 			if ($nav.scrollTop)
-			// });
+		componentDidMount()	{
+
 		}
 
 		render() {
 			const showOrders = this.state.orders[this.state.orderType];
-
-			const $waitingOrders = showOrders.map((item, index) => {
-				return (<Order key={ index } style={ this.styleMap[this.state.orderType] } className="itxia-order"></Order>);
+			const $showOrders = showOrders.map((item, index) => {
+				return (<Order key={ index } className="itxia-order" data={item} type={this.state.orderType}></Order>);
 			});
 
-			const $listGroup = 	this.orderTypeArray.map(item => {
+			const $listGroup = this.orderTypeArray.map(item => {
 				return (<div key={item} className={ "list-group-item " + item } onClick={ this._getData.bind(this) }>
 					{ this.orderLabelMap[item] } { this.state.loadState ? <div className=' orderlist-load-icon iconfont icon-loading-points'></div> : <Badge> { this.state.orders[item].length } </Badge> }
 				</div>);
 			});
 
-			return (<div className="itxia-deal-requirement">
-			        <header className=" requirement-header">
-			          <h1>等待处理</h1>
-			          <hr className="colorgraph" />
+			return (<div className="itxia-admin-orders">
+			        <header className="admin-order-header">
+                <div className='title'>
+                  <h1 className="title">{this.orderLabelMap[this.state.orderType]}</h1>
+                </div>
+                <div className='search'>
+                  <Search className="search-component" title="记录搜索" placeholder="请输入" handleChange={ this._handleSearchChange.bind(this) }></Search>
+                </div>
+                <hr className="colorgraph" />
 			        </header>
 							<main className="main">
 								<div className="slide">
@@ -96,65 +79,36 @@ export default class DealRequirement extends Component
 			            </ListGroup>
 								</div>
 								<div className="content">
-									<Search title="记录搜索" placeholder="请输入" handleChange={ this._handleSearchChange.bind(this) }></Search>
-									{ $waitingOrders }
+									{ $showOrders }
 								</div>
 							</main>
 			      </div>);
 		}
 
-		_getData(event)
-		{
-			// console.log("click");
-			// $.ajax({
-			// 	url: 'http://api.pkuphy.me/orders',
-			// 	type: 'GET',
-			// 	dataType: 'json',
-			//
-			// 	success: function(data) {
-			// 		// var orders = data._items;
-			// 		// var total = data._meta.total;
-			// 		// this.setState({orders: orders});
-			// 		// this.setState({total: total});
-			// 		console.log("获得数据");
-			// 	}.bind(this),
-			//
-			// 	error: function(data) {
-			// 		console.log(data);
-			// 	}.bind(this),
-			// });
-
-			// test data
+		_getData(event) {
 			event.persist();
 			$(event.target.parentNode.children).removeClass("selected");
 			event.target.classList.add("selected");
 			const type = event.target.classList.contains("waiting") ? "waiting" : (event.target.classList.contains("dealing") ? "dealing" : "completed");
 			this.setState({
-				loadState: true,
-
+				orderType: type
 			});
-			setTimeout(() => {
-				this.setState({
-					orderType: type,
-					orders: {
-						waiting: [1, 2, 3, 4],
-						dealing: [1, 2, 3, 4],
-						completed: [1, 2, 4]
-					},
-					loadState: false
-				});
-			}, 1000);
-
 		}
 
+    getTempData(type) {
+      const result = [1, 2, 3, 4, 5, 6].map(item => {
+        const data = new OrderModel();
+        data.type = type;
+        return data;
+      });
+      return result;
+    }
 
-		_handleScroll(event)
-		{
+		_handleScroll(event) {
 			console.log(event);
 		}
 
-		_handleSearchChange(value)
-		{
+		_handleSearchChange(value) {
 			alert("get input value" + value);
 		}
 }
