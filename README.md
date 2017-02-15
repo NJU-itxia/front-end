@@ -22,7 +22,7 @@
    > 启动你的box，第一次启动需要import，花费时间略长
 * ``vagrant ssh``
    > 使用ssh进入虚拟机
-* 修改apt源（推荐ustc源）: 
+* 修改apt源（推荐ustc源）:
   * http://mirrors.ustc.edu.cn/
   * https://lug.ustc.edu.cn/wiki/mirrors/help/ubuntu
 
@@ -42,6 +42,19 @@
 
 ## 下载代码
 * ``git clone your-git-repo-url``
+
+## 开发环境初始化
+```
+/*
+ * nodejs and git must be installed.
+ */
+// for mac linux
+npm install
+
+// for window
+npm install
+npm install -dev
+```
 
 
 ## 启动方法：
