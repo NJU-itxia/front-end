@@ -7,6 +7,11 @@ const style = {
 };
 
 export default class App extends Component {
+
+  state = {
+    adminLoggedIn: true
+  };
+
   render() {
     return (
       <div>
@@ -27,7 +32,7 @@ export default class App extends Component {
               <LinkContainer to="/knight/message">
                 <NavItem><Glyphicon glyph="comment" /> 最近回复</NavItem>
               </LinkContainer>
-              {this.state.adminLoggedIn ? navbarAdmin : null}
+              {/* {this.state.adminLoggedIn ? navbarAdmin : null} */}
             </Nav>
             <Nav pullRight>
               <LinkContainer to="/logout" onClick={this.handleLogout.bind(this)}>
@@ -47,5 +52,9 @@ export default class App extends Component {
       </footer>
       </div>
     );
+  }
+
+  handleLogout() {
+
   }
 }
