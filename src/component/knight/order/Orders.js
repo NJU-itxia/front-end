@@ -37,7 +37,7 @@ export default class Orders extends Component
 					dealing: this.getTempData('dealing'),
 					completed: this.getTempData('completed')
 				},
-				searchContent: ''
+				filterWord: null
 		}
 
 		componentWillReceiveProps(nextProps) {
@@ -49,7 +49,7 @@ export default class Orders extends Component
 		}
 
 		render() {
-			const showOrders = this.state.orders[this.state.orderType];
+			const showOrders = this.state.orders[this.state.orderType].filter(this.checkOrderByFilterWord.bind(this));
 			const $showOrders = showOrders.map(this.createOrder.bind(this));
 
 			const $listGroup = this.orderTypeArray.map(item => {
@@ -90,6 +90,14 @@ export default class Orders extends Component
         handleDataChange={this.handleOrderDataChange(this.state.orderType, index)}></Order>);
     }
 
+    checkOrderByFilterWord(data) {
+      if (this.state.filterWord) {
+        // design filter check logic function to judge
+        return true;
+      }
+      return true;
+    }
+
     handleOrderDataChange = (type, index) => {
       return (data) => {
         this.state.orders[type][index] = data;
@@ -103,7 +111,8 @@ export default class Orders extends Component
 			event.target.classList.add('selected');
 			const type = event.target.classList.contains('waiting') ? 'waiting' : (event.target.classList.contains('dealing') ? 'dealing' : 'completed');
 			this.setState({
-				orderType: type
+				orderType: type,
+        loadState: false,
 			});
 		}
 
@@ -121,8 +130,10 @@ export default class Orders extends Component
 		}
 
 		_handleSearchChange(value) {
-			alert('get input value' + value);
+      if (value !== this.state.filterWord) {
+        this.setState({
+          filterWord: value
+        });
+      }
 		}
-
-
 }
