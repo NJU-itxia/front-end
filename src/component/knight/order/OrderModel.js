@@ -2,9 +2,17 @@ export default class OrderModel {
   constructor(data) {
     if (data) {
       this._initData(data);
+    } else {
+      // TODO delete
+      this._initData();
     }
-    // TODO delete
-    this._initData();
+  }
+
+  get id() {
+    if (this._id) {
+      return this._id;
+    }
+    return null;
   }
 
   get name() {
@@ -61,72 +69,73 @@ export default class OrderModel {
     this._type = value;
   }
 
-  AddMessage(userName, content, time) {
+  addMessage(userName, content, time) {
     const message = {
       userName: userName,
       time: time ? time : new Date().toString(),
       content: content
     };
+    // TODO
+    // remote push database, push to back-end and receive message, set message
     this._messages.push(message);
   }
 
   _initData(data) {
-    this._data = {
-      name: "IT侠: demo",
-		  createdTime:"2016-10-21 18:19:40",
-		  phoneNumber: 1111111,
-		  bbsId: "小白和账号",
-		  machineModel: "联想",
-	    OS: "window 10",
-		  description: "暂无",
-		  messages: [{
-  			userName: "test",
-  			time:"2016-10-21 18:19:40",
-  			content: "just a test message"
-		  }, {
-  			userName: "test",
-  			time:"2016-10-21 18:19:40",
-  			content: "just a test message"
-		  }]};
+    if (data) {
+      this._data = data;
+    } else {
+      this._data = {
+        id: 'temp id',
+        type: 'waiting',
+        name: 'IT侠: demo',
+        createdTime:'2016-10-21 18:19:40',
+        phoneNumber: 1111111,
+        bbsId: '小白和账号',
+        machineModel: '联想',
+        OS: 'window 10',
+        description: '暂无',
+        messages: [{
+          userName: 'test',
+          time:'2016-10-21 18:19:40',
+          content: 'just a test message'
+        }, {
+          userName: 'test',
+          time:'2016-10-21 18:19:40',
+          content: 'just a test message'
+        }]};
+    }
 
-    this._name = 'it demo name';
-    this._createTime = '2016-10-21 18:19:40';
-    this._phoneNumber = '15950580528';
-    this._bbsId = '小白和账号';
-    this._machineModel = '机器型号';
-    this._OS = 'operation system version';
-    this._description = '暂无';
-    this._messages = [{
-      userName: "test",
-      time:"2016-10-21 18:19:40",
-      content: "just a test message"
-    }, {
-      userName: "test",
-      time:"2016-10-21 18:19:40",
-      content: "just a test message"
-    }];
+    this._serializeData(this._data);
   }
 
   getJson() {
     if (this._data) {
       return {
-        name: "IT侠: demo",
-  		  createdTime:"2016-10-21 18:19:40",
-  		  phoneNumber: 1111111,
-  		  bbsId: "小白和账号",
-  		  machineModel: "联想",
-  	    OS: "window 10",
-  		  description: "暂无",
-  		  messages: [{
-    			userName: "test",
-    			time:"2016-10-21 18:19:40",
-    			content: "just a test message"
-  		  }, {
-    			userName: "test",
-    			time:"2016-10-21 18:19:40",
-    			content: "just a test message"
-  		  }]};
+        id: this.id,
+        type: this.type,
+        name: this.name,
+  		  createdTime:this.createdTime,
+  		  phoneNumber: this.phoneNumber,
+  		  bbsId: this.bbsId,
+  		  machineModel: this.machineModel,
+  	    OS: this.OS,
+  		  description: this.description,
+  		  messages: this.messages
+      };
     }
     return null;
+  }
+
+  _serializeData(data) {
+    this._id = data.id;
+    this._type = data.type;
+    this._name = data.name;
+    this._createTime = data.createdTime;
+    this._phoneNumber = data.phoneNumber;
+    this._bbsId = data.bbsId;
+    this._machineModel = data.machineModel;
+    this._OS = data.OS;
+    this._description = data.description;
+    this._messages = data.messages;
   }
 }

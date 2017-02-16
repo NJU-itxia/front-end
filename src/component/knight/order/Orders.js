@@ -1,12 +1,10 @@
-import React, { Component } from "react";
-import { Row, Col, ListGroup, ListGroupItem, Badge, Panel,
-  ButtonToolbar, Button, Collapse, Input } from 'react-bootstrap';
-import { LinkContainer, IndexLinkContainer } from "react-router-bootstrap";
-import { Link } from "react-router";
-import moment from 'moment';
+import React, { Component } from 'react';
+import { ListGroup, Badge } from 'react-bootstrap';
+import { LinkContainer, IndexLinkContainer } from 'react-router-bootstrap';
+import { Link } from 'react-router';
 
-import Search from "../Search";
-import Order from "./Order";
+import Search from '../Search';
+import Order from './Order';
 import OrderModel from './OrderModel';
 
 export default class Orders extends Component
@@ -14,11 +12,11 @@ export default class Orders extends Component
 		constructor(props)
 		{
 			super(props);
-			this.orderTypeArray = ["waiting", "dealing", "completed"];
+			this.orderTypeArray = ['waiting', 'dealing', 'completed'];
 			this.orderLabelMap = {
-				"waiting": "等待处理",
-				"dealing": "正在处理",
-				"completed": "处理完成"
+				waiting: '等待处理',
+				dealing: '正在处理',
+				completed: '处理完成'
 			};
 		}
 
@@ -32,14 +30,14 @@ export default class Orders extends Component
 		// loadState true is Loading
 		state = {
 				loadState: true,
-				userId: "15950580528",
-				orderType: "waiting",
+				userId: '15950580528',
+				orderType: 'waiting',
 				orders: {
 					waiting: this.getTempData('waiting'),
 					dealing: this.getTempData('dealing'),
 					completed: this.getTempData('completed')
 				},
-				searchContent: ""
+				searchContent: ''
 		}
 
 		componentWillReceiveProps(nextProps) {
@@ -52,9 +50,7 @@ export default class Orders extends Component
 
 		render() {
 			const showOrders = this.state.orders[this.state.orderType];
-			const $showOrders = showOrders.map((item, index) => {
-				return (<Order key={ index } className="itxia-order" data={item} type={this.state.orderType}></Order>);
-			});
+			const $showOrders = showOrders.map(this.createOrder.bind(this));
 
 			const $listGroup = this.orderTypeArray.map(item => {
 				return (<div key={item} className={ "list-group-item " + item } onClick={ this._getData.bind(this) }>
@@ -85,11 +81,27 @@ export default class Orders extends Component
 			      </div>);
 		}
 
+    createOrder(item, index) {
+      return (<Order
+        key={ index }
+        className="itxia-order"
+        data={item.getJson()}
+        type={this.state.orderType}
+        handleDataChange={this.handleOrderDataChange(this.state.orderType, index)}></Order>);
+    }
+
+    handleOrderDataChange = (type, index) => {
+      return (data) => {
+        this.state.orders[type][index] = data;
+        this.forceUpdate();
+      };
+    }
+
 		_getData(event) {
-			event.persist();
-			$(event.target.parentNode.children).removeClass("selected");
-			event.target.classList.add("selected");
-			const type = event.target.classList.contains("waiting") ? "waiting" : (event.target.classList.contains("dealing") ? "dealing" : "completed");
+      event.preventDefault();
+			$(event.target.parentNode.children).removeClass('selected');
+			event.target.classList.add('selected');
+			const type = event.target.classList.contains('waiting') ? 'waiting' : (event.target.classList.contains('dealing') ? 'dealing' : 'completed');
 			this.setState({
 				orderType: type
 			});
@@ -109,6 +121,8 @@ export default class Orders extends Component
 		}
 
 		_handleSearchChange(value) {
-			alert("get input value" + value);
+			alert('get input value' + value);
 		}
+
+
 }
