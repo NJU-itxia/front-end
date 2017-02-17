@@ -26,11 +26,14 @@ export default class App extends Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
-              <LinkContainer to="/knight/wait">
+              <LinkContainer to="/knight/orders">
                 <NavItem><Glyphicon glyph="list-alt" /> 处理请求</NavItem>
               </LinkContainer>
               <LinkContainer to="/knight/message">
                 <NavItem><Glyphicon glyph="comment" /> 最近回复</NavItem>
+              </LinkContainer>
+              <LinkContainer to="/knight/setting">
+                <NavItem><Glyphicon glyph="setting" /> 设置</NavItem>
               </LinkContainer>
               {/* {this.state.adminLoggedIn ? navbarAdmin : null} */}
             </Nav>
