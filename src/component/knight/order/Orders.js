@@ -87,6 +87,7 @@ export default class Orders extends Component
         className="itxia-order"
         data={item.getJson()}
         type={this.state.orderType}
+				expand={true}
         handleDataChange={this.handleOrderDataChange(this.state.orderType, index)}></Order>);
     }
 

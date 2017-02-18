@@ -41,7 +41,7 @@ export default class Order extends Component
       messages: PropTypes.array
     }).isRequired,
 		type: PropTypes.string.isRequired,
-    handleDataChange: PropTypes.func.isRequired
+    handleDataChange: PropTypes.func.isRequired,
 	}
 	// style primary success info warning link
 	static defaultProps = {
@@ -52,7 +52,7 @@ export default class Order extends Component
 
 	state = {
     orderId: null,
-		messageViewStatus: false,
+		messageViewStatus: this.props.type === "recentlyReplied" ? true : false,
 		deleteBtnsStatus: []
 	}
 
