@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ListGroup, Badge } from 'react-bootstrap';
+import { ListGroup, Badge, Pagination, Glyphicon } from 'react-bootstrap';
 import { LinkContainer, IndexLinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router';
 
@@ -37,7 +37,9 @@ export default class Orders extends Component
 					dealing: this.getTempData('dealing'),
 					completed: this.getTempData('completed')
 				},
-				filterWord: null
+				filterWord: null,
+        activePage: 1,
+        pageCount: 4
 		}
 
 		componentWillReceiveProps(nextProps) {
@@ -49,12 +51,15 @@ export default class Orders extends Component
 		}
 
 		render() {
-			const showOrders = this.state.orders[this.state.orderType].filter(this.checkOrderByFilterWord.bind(this));
+			const filterOrders = this.state.orders[this.state.orderType].filter(this.checkOrderByFilterWord.bind(this));
+      const showOrders = filterOrders.filter(this.checkOrderByPagination.bind(this));
 			const $showOrders = showOrders.map(this.createOrder.bind(this));
 
 			const $listGroup = this.orderTypeArray.map(item => {
 				return (<div key={item} className={ "list-group-item " + item } onClick={ this._getData.bind(this) }>
-					{ this.orderLabelMap[item] } { this.state.loadState ? <div className=' orderlist-load-icon iconfont icon-loading-points'></div> : <Badge> { this.state.orders[item].length } </Badge> }
+					<Glyphicon glyph="chevron-right" className={ this.state.orderType === item ? "v-show" : "v-hide"} />
+					{ this.orderLabelMap[item] }
+					{ this.state.loadState ? <div className=' orderlist-load-icon iconfont icon-loading-points'></div> : <Badge> { this.state.orders[item].length } </Badge> }
 				</div>);
 			});
 
@@ -63,8 +68,10 @@ export default class Orders extends Component
                 <div className='title'>
                   <h1 className="title">{this.orderLabelMap[this.state.orderType]}</h1>
                 </div>
-                <div className='search'>
-                  <Search className="search-component" title="记录搜索" placeholder="请输入" handleChange={ this._handleSearchChange.bind(this) }></Search>
+                <div className='extra'>
+                  <div className='search'>
+                    <Search className="search-component" title="记录搜索" placeholder="请输入" handleChange={ this._handleSearchChange.bind(this) }></Search>
+                  </div>
                 </div>
                 <hr className="colorgraph" />
 			        </header>
@@ -76,6 +83,15 @@ export default class Orders extends Component
 								</div>
 								<div className="content">
 									{ $showOrders }
+                  <Pagination
+                    prev
+                    next
+                    boundaryLinks
+                    items={Math.ceil(filterOrders.length / 4)}
+                    maxButtons={4}
+                    activePage={this.state.activePage}
+                    onSelect={this._handlePaginationSelectChange}
+                  />
 								</div>
 							</main>
 			      </div>);
@@ -90,12 +106,24 @@ export default class Orders extends Component
         handleDataChange={this.handleOrderDataChange(this.state.orderType, index)}></Order>);
     }
 
-    checkOrderByFilterWord(data) {
+    checkOrderByFilterWord(data, index) {
       if (this.state.filterWord) {
         // design filter check logic function to judge
         return true;
       }
+      // TODO return false
       return true;
+    }
+
+    checkOrderByPagination(data, index) {
+      const range = {
+        min: (this.state.activePage - 1) * this.state.pageCount,
+        max: this.state.activePage * this.state.pageCount
+      };
+      if (index < range.max && index >= range.min) {
+        return true;
+      }
+      return false;
     }
 
     handleOrderDataChange = (type, index) => {
@@ -117,7 +145,7 @@ export default class Orders extends Component
 		}
 
     getTempData(type) {
-      const result = [1, 2, 3, 4, 5, 6].map(item => {
+      const result = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 16, 17, 18].map(item => {
         const data = new OrderModel();
         data.type = type;
         return data;
@@ -136,4 +164,10 @@ export default class Orders extends Component
         });
       }
 		}
+
+    _handlePaginationSelectChange = (eventKey) => {
+      this.setState({
+        activePage: eventKey
+      });
+    }
 }

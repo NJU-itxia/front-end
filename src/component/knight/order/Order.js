@@ -60,7 +60,7 @@ export default class Order extends Component
     if (nextProps.type !== this.props.type) {
       this.setState({
         messageViewStatus: false,
-        deleteBtnsStatus: nextProps.data.messages.map(item => false)
+        deleteBtnsStatus: nextProps.data.messages.map(item => {return false;})
       });
     }
   }
@@ -105,7 +105,7 @@ export default class Order extends Component
   createMessageItemContent(item, index) {
     return (<div key={ index } data-data={item} className="item-content" onMouseOver={ () => this._handleDeleteBtnShow.bind(this)(index, true) } onMouseLeave={ () => this._handleDeleteBtnShow.bind(this)(index, false) } >
         <div className="header-info">
-          <span ref={ "deleteBtn" + index } className={classnames("iconfont", "icon-cha", (this.state.deleteBtnsStatus[index] ? "v-show" : "v-hide"))} onClick={ () => this._handleDeleteMessage.bind(this)(index) }></span>
+          <span ref={ "deleteBtn" + index } data-index={index} className={classnames("iconfont", "icon-cha", (this.state.deleteBtnsStatus[index] ? "v-show" : "v-hide"))} onClick={ this._handleDeleteMessage.bind(this) }></span>
           <strong>{ item.userName }</strong> { item.time }</div>
         <div className="content"> { item.content }</div>
     </div>);
@@ -143,8 +143,9 @@ export default class Order extends Component
 		});
 	}
 
-	_handleDeleteMessage(index) {
+	_handleDeleteMessage(event) {
     // TODO 删除数据库中信息
+    const index = event.currentTarget.dataSet.index;
 		const cloneArr = this.props.data.messages.slice(0);
 		const copy = this.state.deleteBtnsStatus.slice(0);
 		cloneArr.splice(index, 1);
