@@ -13,6 +13,12 @@ export default class App extends Component {
   };
 
   render() {
+    const navbarAdmin = (
+      <LinkContainer to="/knight/setting">
+        <NavItem><Glyphicon glyph="glyphicon glyphicon-cog" /> 设置</NavItem>
+      </LinkContainer>
+    );
+
     return (
       <div>
         <Navbar style={ style }>
@@ -32,10 +38,7 @@ export default class App extends Component {
               <LinkContainer to="/knight/message">
                 <NavItem><Glyphicon glyph="comment" /> 最近回复</NavItem>
               </LinkContainer>
-              <LinkContainer to="/knight/setting">
-                <NavItem><Glyphicon glyph="setting" /> 设置</NavItem>
-              </LinkContainer>
-              {/* {this.state.adminLoggedIn ? navbarAdmin : null} */}
+               {this.state.adminLoggedIn ? navbarAdmin : null}
             </Nav>
             <Nav pullRight>
               <LinkContainer to="/logout" onClick={this.handleLogout.bind(this)}>
