@@ -85,35 +85,52 @@ export default class NewOrder extends React.Component {
         </ol>
         <hr className="colorgraph" />
         <form className="form-horizontal" onSubmit={this.handleSubmit.bind(this)}>
-          <FormControl.Static
-            type="text"
-            label="手机号码："
-            labelClassName="col-sm-2"
-            wrapperClassName="col-sm-8"
-          >
-            <strong>{model.user.phoneNumber}</strong>
-          </FormControl.Static>
-					<HelpBlock>
-						<Glyphicon glyph="question-sign"/> 如需更换手机号码，请退出当前帐号并以新的手机号码登录。
-					</HelpBlock>
-          <FormControl
-            type="text"
-            label="姓名："
-            labelClassName="col-sm-2"
-            wrapperClassName="col-sm-2"
-            value={this.state.name}
-            onChange={(e) => this.setState({name: e.target.value})} />
-          <FormControl
-            type="text"
-            label="小百合 ID："
-            labelClassName="col-sm-2"
-            wrapperClassName="col-sm-5"
-            value={this.state.lilybbs_id}
-            onChange={(e) => this.setState({lilybbs_id: e.target.value})}
-					/>
-					<HelpBlock>
-						<Glyphicon glyph="question-sign"/> 若没有小百合帐号可不填，此项仅用于区分是否为本校师生。
-					</HelpBlock>
+
+        <div class="form-group">
+          <label for="inputPhone" class="col-sm-2 control-label">手机:</label>
+          <div class="col-sm-8">
+            <p class="form-control-static" id="inputPhone">
+              <strong>15850580261</strong>
+            </p>
+          </div>
+        </div>
+          <FormGroup>
+            <ControlLabel>手机</ControlLabel>
+            <FormControl.Static
+              type="text"
+              label="手机号码："
+              labelClassName="col-sm-2"
+              wrapperClassName="col-sm-8"
+            >
+              <strong>{model.user.phoneNumber}</strong>
+            </FormControl.Static>
+            <HelpBlock>
+              <Glyphicon glyph="question-sign"/> 如需更换手机号码，请退出当前帐号并以新的手机号码登录。
+            </HelpBlock>
+          </FormGroup>
+          <FormGroup>
+            <ControlLabel>姓名</ControlLabel>
+            <FormControl
+              type="text"
+              labelClassName="col-sm-2"
+              wrapperClassName="col-sm-2"
+              value={this.state.name}
+              onChange={(e) => this.setState({name: e.target.value})}
+            />
+          </FormGroup>
+          <FormGroup>
+            <ControlLabel>小百合 ID</ControlLabel>
+            <FormControl
+              type="text"
+              labelClassName="col-sm-2"
+              wrapperClassName="col-sm-5"
+              value={this.state.lilybbs_id}
+              onChange={(e) => this.setState({lilybbs_id: e.target.value})}
+  					/>
+  					<HelpBlock>
+  						<Glyphicon glyph="question-sign"/> 若没有小百合帐号可不填，此项仅用于区分是否为本校师生。
+  					</HelpBlock>
+          </FormGroup>
           <div className="form-group">
             <label htmlFor="campus" className="col-sm-2 control-label">预约校区：</label>
             <div className="col-sm-8">
