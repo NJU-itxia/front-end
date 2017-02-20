@@ -7,7 +7,18 @@ const style = {
 };
 
 export default class App extends Component {
+
+  state = {
+    adminLoggedIn: true
+  };
+
   render() {
+    const navbarAdmin = (
+      <LinkContainer to="/knight/setting">
+        <NavItem><Glyphicon glyph="glyphicon glyphicon-cog" /> 设置</NavItem>
+      </LinkContainer>
+    );
+
     return (
       <div>
         <Navbar style={ style }>
@@ -21,13 +32,13 @@ export default class App extends Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
-              <LinkContainer to="/knight/wait">
+              <LinkContainer to="/knight/orders">
                 <NavItem><Glyphicon glyph="list-alt" /> 处理请求</NavItem>
               </LinkContainer>
               <LinkContainer to="/knight/message">
                 <NavItem><Glyphicon glyph="comment" /> 最近回复</NavItem>
               </LinkContainer>
-              {this.state.adminLoggedIn ? navbarAdmin : null}
+               {this.state.adminLoggedIn ? navbarAdmin : null}
             </Nav>
             <Nav pullRight>
               <LinkContainer to="/logout" onClick={this.handleLogout.bind(this)}>
@@ -47,5 +58,9 @@ export default class App extends Component {
       </footer>
       </div>
     );
+  }
+
+  handleLogout() {
+
   }
 }
