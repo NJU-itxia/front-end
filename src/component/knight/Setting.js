@@ -4,15 +4,24 @@ import Table from './setting/Table';
 
 
 
-export default class Wait extends React.Component {
+export default class Setting extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  state = {
+    knightInfo: []
+  }
+
+
+
   render() {
     return (
-      <div>
+      <div className="itxia-setting">
         <h1>人员管理</h1>
         <hr className="colorgraph" />
         <NewKnight/>
         <Table/>
-
       </div>
     )
   }
