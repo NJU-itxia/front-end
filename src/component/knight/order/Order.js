@@ -52,7 +52,7 @@ export default class Order extends Component
 
 	state = {
     orderId: null,
-		messageViewStatus: this.props.type === "recentlyReplied" ? true : false,
+		messageViewStatus: false,
 		deleteBtnsStatus: []
 	}
 

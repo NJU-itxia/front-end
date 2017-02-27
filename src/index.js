@@ -19,7 +19,7 @@ import studentModel from './model/student';
 
 import KnightApp from './component/knight/KnightApp';
 import Orders from './component/knight/order/Orders';
-import Message from './component/knight/Message';
+import MessagePage from './component/knight/messages/MessagePage';
 import Setting from './component/knight/Setting';
 
 function redirectIfLoggedIn(nextState, replaceState) {
@@ -63,7 +63,7 @@ const routes = (
 				onEnter={requireKnightLogin}
 			>
         <Route path="orders" component={ Orders } />
-        <Route path="message" component={Message} />
+        <Route path="message" component={MessagePage} />
         <Route path="setting" component={Setting} />
       </Route>
 		</Route>
