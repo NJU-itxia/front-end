@@ -11,18 +11,20 @@ export default class Setting extends React.Component {
 
     this.state = {
       knights: [],
-      loading: null,
+      loading: false,
+      tableLoading: false,
     }
 
     this._onChange = this._onChange.bind(this);
   }
 
   _onChange() {
-    const {knights, loading} = settingModel.getState();
-    console.log(knights, loading);
+    const {knights, loading, tableLoading} = settingModel.getState();
+
     this.setState({
       knights,
-      loading
+      loading,
+      tableLoading
     })
   }
 
@@ -36,8 +38,8 @@ export default class Setting extends React.Component {
       <div className="itxia-setting" >
         <h1>人员管理</h1>
         <hr className="colorgraph" />
-        <NewKnight/>
-        <KnightInfo knightInfo = {this.state.knights}/>
+        <NewKnight loading = { this.state.loading }/>
+        <KnightInfo knightInfo = {this.state.knights} tableLoading = {this.state.tableLoading}/>
       </div>
     )
   }

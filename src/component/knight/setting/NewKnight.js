@@ -18,6 +18,9 @@ export default class NewKnight extends React.Component {
     campus: 'gulou',
     role: 'manager',
   }
+  static propTypes = {
+    loading: React.PropTypes.bool,
+  };
 
   addKnight = (e) => {
     e.preventDefault();
