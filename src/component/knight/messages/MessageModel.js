@@ -2,17 +2,17 @@ export default class Message {
     constructor(data) {
         this.content = data.content;
         this.userName = data.userName;
-        this.time = data.time;
+        this.replyTime = data.replyTime;
         this.orderId = data.orderId;
-        this.name = data.name;
+        this.orderName = data.orderName;
     }
 
-    get name(){
-        return this.name;
+    get orderName(){
+        return this.orderName;
     }
 
-    set name(name){
-        this.name = name;
+    set orderName(name){
+        this.name = orderName;
     }
 
     get content() {
@@ -29,11 +29,11 @@ export default class Message {
         this.userName = userName;
     }
 
-    get time() {
-        return this.time;
+    get replyTime() {
+        return this.replyTime;
     }
-    set time(time) {
-        this.time = time;
+    set replyTime(replyTime) {
+        this.replyTime = replyTime;
     }
 
     get orderId() {
@@ -58,9 +58,9 @@ export default class Message {
             return {
                 content: this.content,
                 userName: this.userName,
-                time: this.time,
+                replyTime: this.replyTime,
                 orderId: this.orderID,
-                name: this.name
+                orderName: this.orderName
             }
         }
         else{
@@ -71,13 +71,13 @@ export default class Message {
     static testData(number){
         let data = [];
         for(let i=0;i<number;i++){
-            const random = Math.random();
+            const random = Math.random().toString();
             data.push({
                 content: random,
                 userName: random,
-                time: random,
+                replyTime: random,
                 orderId: random,
-                name: random
+                orderName: random
             });
         }
         return data;
