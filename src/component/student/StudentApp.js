@@ -1,5 +1,7 @@
 import React from 'react';
 import { Col, Menu, Row } from 'antd';
+import { Link } from 'react-router';
+
 const MenuItem = Menu.Item;
 const MenuItemGroup = Menu.ItemGroup;
 const SubMenu = Menu.SubMenu;
@@ -18,12 +20,18 @@ class Student extends React.Component {
         <header id="header">
           <Row gutter={0}>
             <Col id="logo" span={6}>
-              <img alt="logo" src="./img/logo.jpg" />NJU-IT侠预约系统
+              <Link to="/">
+                <img alt="logo" src="/img/logo.jpg" />NJU-IT侠预约系统
+              </Link>
             </Col>
             <Col span={6} push={12}>
               <Menu id="menu" mode="horizontal" selectedKeys={[this.state.selectedKey]} >
-                <MenuItem key="newOrder">当前请求</MenuItem>
-                <MenuItem key="myOrders">历史请求</MenuItem>
+                <MenuItem key="newOrder">
+                  <Link to="/order">当前请求</Link>
+                </MenuItem>
+                <MenuItem key="myOrders">
+                  <Link to="/orders">历史记录</Link>
+                </MenuItem>
               </Menu>
             </Col>
           </Row>
