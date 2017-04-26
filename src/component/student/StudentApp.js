@@ -1,39 +1,34 @@
-import React, { Component, PropTypes } from 'react';
-import { Navbar, Nav, NavItem, Glyphicon } from "react-bootstrap";
-import { LinkContainer, IndexLinkContainer } from "react-router-bootstrap";
+import React from 'react';
+import { Col, Menu, Row } from 'antd';
+const MenuItem = Menu.Item;
+const MenuItemGroup = Menu.ItemGroup;
+const SubMenu = Menu.SubMenu;
 
-const style = {
-	"marginBottom": 0
-};
+class Student extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedKey: 'newOrder'
+    };
+  }
 
-class Student extends Component {
   render() {
     return (
       <div>
-        <Navbar style={style}>
-          <Navbar.Header className='navbar-header'>
-            <IndexLinkContainer to='/login'>
-							<Navbar.Brand>
-              	<a href="/">南京大学 IT 侠预约处理系统</a>
-							</Navbar.Brand>
-            </IndexLinkContainer>
-            <Navbar.Toggle />
-          </Navbar.Header>
-          <Navbar.Collapse>
-            <Nav>
-              <LinkContainer to="/student/order">
-                <NavItem><Glyphicon glyph="list-alt" /> 当前预约</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/student/history">
-                <NavItem><Glyphicon glyph="th-list" /> 历史预约</NavItem>
-              </LinkContainer>
-            </Nav>
-            <Nav pullRight>
-              <NavItem><Glyphicon glyph="log-out" /> 登出</NavItem>
-            </Nav>
-          </Navbar.Collapse>
-      	</Navbar>
-	      <div className="container">
+        <header id="header">
+          <Row gutter={0}>
+            <Col id="logo" span={6}>
+              <img alt="logo" src="./img/logo.jpg" />NJU-IT侠预约系统
+            </Col>
+            <Col span={6} push={12}>
+              <Menu id="menu" mode="horizontal" selectedKeys={[this.state.selectedKey]} >
+                <MenuItem key="newOrder">当前请求</MenuItem>
+                <MenuItem key="myOrders">历史请求</MenuItem>
+              </Menu>
+            </Col>
+          </Row>
+        </header>
+	      <div className="main-wrapper">
 	        {this.props.children}
 	      </div>
 	      <footer className="page-footer">
@@ -45,10 +40,6 @@ class Student extends Component {
       </div>
     );
   }
-
-	handleLogout = () => {
-
-	}
 }
 
 export default Student;
