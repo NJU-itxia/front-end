@@ -1,4 +1,6 @@
-const API_URL = 'http://localhost:3009/api';
+const crypto = require('crypto');
+
+const API_URL = 'http://localhost:5000/api/v1_1';
 
 class StudentModel {
 	constructor() {
@@ -23,14 +25,24 @@ class StudentModel {
 		this.listeners.forEach(listener => listener());
 	}
 
-	login(username, password) {
+	login(phone, password) {
+    const random_str = 'pong!you';
+    const time_stamp = new Date() + '';
+    const encrpted = crypto.createHash('sha256')
+      .update(password, 'utf8')
+      .update(random_str, 'utf8')
+      .update(time_stamp, 'utf8')
+      .digest('hex');
 		return $.ajax({
-			url: API_URL + '/auth/student',
+			url: API_URL + '/client/login',
 			method: 'POST',
-			data: {
-				username,
-				password,
-			},
+      contentType: 'application/json',
+			data: JSON.stringify({
+				phone_number: phone,
+				encryption_str: encrpted,
+        random_str,
+        time_stamp
+			}),
 		}).then(response => {
 			if (response.error) {
 				return Promise.reject(response.error);
