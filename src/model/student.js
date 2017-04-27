@@ -1,4 +1,4 @@
-const crypto = require('crypto');
+const createHash = require('create-hash');;
 
 const API_URL = 'http://localhost:5000/api/v1_1';
 
@@ -28,7 +28,7 @@ class StudentModel {
 	login(phone, password) {
     const random_str = 'pong!you';
     const time_stamp = new Date() + '';
-    const encrpted = crypto.createHash('sha256')
+    const encrpted = createHash('sha256')
       .update(password, 'utf8')
       .update(random_str, 'utf8')
       .update(time_stamp, 'utf8')
