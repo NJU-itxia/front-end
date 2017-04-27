@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Menu, Row } from 'antd';
+import { Col, Icon,  Menu, Row } from 'antd';
 import { Link } from 'react-router';
 
 const MenuItem = Menu.Item;
@@ -33,11 +33,30 @@ class Student extends React.Component {
 	      <div className="main-wrapper">
 	        {this.props.children}
 	      </div>
-	      <footer className="page-footer">
-	        <div className="container">
-	          <hr className="colorgraph" />
-	          <p className="text-center">Designed and built by LC &amp; 南京大学 IT 侠工作室</p>
-	        </div>
+	      <footer id="footer">
+          <Row gutter={0}>
+            <Col span={8} className="footer-item">
+              <h2><Icon type="link" />相关站点</h2>
+              <div>
+                <a href="http://itxia.club/" target="_blank">南京大学IT侠公益社团</a>
+              </div>
+              <div>
+                <a href="http://bbs.nju.edu.cn/bbsdoc?board=NoteBook" target="_blank">小百合Notebook版</a>
+              </div>
+            </Col>
+            <Col span={8} className="footer-item">
+              <h2><Icon type="github" />Github</h2>
+              <div>
+                <a href="https://github.com/NJU-itxia" target="_blank">源码仓库</a>
+              </div>
+            </Col>
+            <Col span={8} className="footer-item">
+              <h2>Copyright©2017</h2>
+              <div>
+                <p className="text-center">LC &amp; 南京大学 IT 侠工作室出品</p>
+              </div>
+            </Col>
+          </Row>
 	      </footer>
       </div>
     );
