@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Icon,  Menu, Row } from 'antd';
+import { Button, Col, Icon, Menu, Row } from 'antd';
 import { Link } from 'react-router';
 
 const MenuItem = Menu.Item;
@@ -18,7 +18,8 @@ class Student extends React.Component {
                 <img alt="logo" src="/img/logo.jpg" />NJU-IT侠预约系统
               </Link>
             </Col>
-            <Col span={6} push={12}>
+            <Col id="options" span={18} >
+              <Button id="logout-button" size="small"><Icon type="logout" />登出</Button>
               <Menu id="menu" mode="horizontal" selectedKeys={selectedKeys} >
                 <MenuItem key="order">
                   <Link to="/student/order">当前请求</Link>
