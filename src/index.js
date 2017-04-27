@@ -13,7 +13,7 @@ import KnightLogin from './component/login/Knight';
 
 import StudentApp from './component/student/StudentApp';
 import NewOrder from './component/student/NewOrder';
-import MyOrder from './component/student/MyOrder';
+import History from './component/student/History';
 import studentModel from './model/student';
 
 import KnightApp from './component/knight/KnightApp';
@@ -53,7 +53,7 @@ const routes = (
 				onEnter={requireStudentLogin}
 			>
         <Route path="order" component={NewOrder} />
-        <Route path="history" component={MyOrder} />
+        <Route path="history" component={History} />
       </Route>
       <Route
 				path="knight"
