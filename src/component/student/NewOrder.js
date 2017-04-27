@@ -29,6 +29,9 @@ export default class NewOrder extends React.Component {
     return (
       <Row>
         <Col span="24">
+          <div className="title">
+            <h1>你好，请提交你的维修预约</h1>
+          </div>
           <Form>
             <FormItem
               {...formItemLayout}
