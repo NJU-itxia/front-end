@@ -14,7 +14,6 @@ import KnightLogin from './component/login/Knight';
 import StudentApp from './component/student/StudentApp';
 import NewOrder from './component/student/NewOrder';
 import MyOrder from './component/student/MyOrder';
-import Logout from './component/student/Logout';
 import studentModel from './model/student';
 
 import KnightApp from './component/knight/KnightApp';
@@ -55,7 +54,6 @@ const routes = (
 			>
         <Route path="order" component={NewOrder} />
         <Route path="history" component={MyOrder} />
-        <Route path="logout" component={Logout} />
       </Route>
       <Route
 				path="knight"
