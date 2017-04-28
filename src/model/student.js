@@ -1,4 +1,5 @@
-const createHash = require('create-hash');;
+import createHash from 'create-hash';
+import { getCookie, setCookie } from '../util/cookie';
 
 const API_URL = 'http://localhost:5000/api/v1_1';
 
@@ -25,6 +26,7 @@ class StudentModel {
     this.listeners.forEach(listener => listener());
   }
 
+  // TODO move to ServiceClient
   login(phone, password) {
     const random_str = 'pong!you';
     const time_stamp = new Date() + '';
@@ -44,7 +46,16 @@ class StudentModel {
         return Promise.reject(response.error);
       }
       this.user = response;
+      this.token = response.token;
     });
+  }
+
+  set token(token) {
+    setCookie('client', token, 24 * 7);
+  }
+
+  get token() {
+    return getCookie('client');
   }
 }
 

@@ -1,43 +1,8 @@
-import sha256 from 'sha256';
+import { getCookie, setCookie } from '../util/cookie';
 
 class KnightModel {
   constructor(props) {
-    this.token = this._getToken();
-  }
-
-  _getToken() {
-    const reg=new RegExp("(^| )"+ this._getTokenPath() +"=([^;]*)(;|$)");
-    let arr = undefined;
-    if(arr = document.cookie.match(reg)) {
-      return unescape(arr[2]);
-    }
-    return null;
-  }
-
-  _getTokenPath() {
-    if (this._tokenPath) {
-      return this._tokenPath;
-    }
-
-    const knightTokenPath = sha256('knightTokenPath');
-    return knightTokenPath;
-  }
-
-  _setToken(name, value, hours){
-    if(Days == null || Days == ''){
-        Days = 24;
-    }
-    var exp  = new Date();
-    exp.setTime(exp.getTime() + hours * 60 * 60 * 1000);
-    document.cookie = name + "="+ escape (value) + "; path=/;expires=" + exp.toGMTString();
-  }
-
-  _clearToken() {
-    const exp = new Date();
-    exp.setTime(exp.getTime() - 1);
-    const cval = this._getToken(this._getTokenPath());
-    if(cval !== null)
-      document.cookie = name + "=" + cval + "; path=/;expires=" + exp.toGMTString();
+    this.token = getCookie('knight');
   }
 
   login(username, password) {

@@ -1,7 +1,6 @@
 import React from 'react';
 import cookie from 'react-cookie';
 
-
 export default class MyOrder extends React.Component {
   constructor(props) {
     super(props);
@@ -34,7 +33,6 @@ export default class MyOrder extends React.Component {
   componentWillMount() {
     this.get_orders();
   }
-
 
   render() {
     return (
