@@ -58,9 +58,10 @@ export default class NewOrder extends React.Component {
             >
               <Select
                 style={{ width: '32%' }}
+                defaultValue="gulou"
               >
-                <Option value="rmb">鼓楼校区</Option>
-                <Option value="dollar">仙林校区</Option>
+                <Option value="gulou">鼓楼校区</Option>
+                <Option value="xianlin">仙林校区</Option>
               </Select>
             </FormItem>
             <FormItem

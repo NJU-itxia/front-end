@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Row, Col, Button, Image, Glyphicon, FormGroup, FormControl, HelpBlock, ControlLabel } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
 
-import knightModel from '../../model/knightModel';
+import knightModel from '../../model/knight';
 
 export default class Login extends Component {
   state = {

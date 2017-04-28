@@ -8,10 +8,10 @@ class KnightModel {
   _getToken() {
     const reg=new RegExp("(^| )"+ this._getTokenPath() +"=([^;]*)(;|$)");
     let arr = undefined;
-    if(arr=document.cookie.match(reg)) {
+    if(arr = document.cookie.match(reg)) {
       return unescape(arr[2]);
     }
-      return null;
+    return null;
   }
 
   _getTokenPath() {
@@ -37,7 +37,7 @@ class KnightModel {
     exp.setTime(exp.getTime() - 1);
     const cval = this._getToken(this._getTokenPath());
     if(cval !== null)
-        document.cookie= name + "=" + cval + "; path=/;expires=" + exp.toGMTString();
+      document.cookie = name + "=" + cval + "; path=/;expires=" + exp.toGMTString();
   }
 
   login(username, password) {
@@ -51,12 +51,9 @@ class KnightModel {
             encryption_str: sha256(password)
           }
         }).then(response => {
-          // TODO
-          console.log(response);
           if (response.error) {
             reject(response.error);
           }
-
         });
       }
       else {
