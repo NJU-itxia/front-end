@@ -46,12 +46,14 @@ class StudentModel {
         time_stamp
       })
     }).then(response => {
-      if (response.error) {
-        return Promise.reject(response.error);
-      }
       this.user = response;
       this.token = response.token;
+      return response
     });
+  }
+
+  logout() {
+
   }
 
   loadOrders() {

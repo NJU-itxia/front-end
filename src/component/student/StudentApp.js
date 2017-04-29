@@ -7,6 +7,9 @@ const MenuItemGroup = Menu.ItemGroup;
 const SubMenu = Menu.SubMenu;
 
 class Student extends React.Component {
+  handleLogout() {
+
+  }
   render() {
     const selectedKeys = [this.props.routes[2].path];
     return (

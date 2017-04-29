@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { message } from 'antd';
 import { Row, Col, Button, Image, Glyphicon, FormGroup, FormControl, HelpBlock } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { browserHistory } from 'react-router';
@@ -24,36 +25,38 @@ export default class Login extends Component {
 							responsive
 							style={{ margin: 'auto', marginBottom: 20 }}
 						/>
-						<FormGroup>
-							<FormControl
-								type="text"
-								value={account}
-								placeholder="您的 11 位手机号码"
-								bsStyle={this.validateState()}
-								bsSize="large"
-								onChange={this.handleAccountChange}
-							/>
-							<HelpBlock>
-								<p><Glyphicon glyph="question-sign"/> 请使用您的<strong>手机号码</strong>直接登录，无需注册。我们稍后会通过此号码以及本站的回复系统与您联系。</p>
-							</HelpBlock>
-						</FormGroup>
-						<FormGroup>
-							<FormControl
-								type="password"
-								value={password}
-								placeholder="您的密码"
-								bsSize="large"
-								onChange={this.handlePasswordChange}
-							/>
-						</FormGroup>
-						<Button
-							disabled={!this.validateState()}
-							onClick={this.handleFormSubmit.bind(this)}
-							bsStyle="primary"
-							block
-						>
-						登陆
-						</Button>
+            <form onSubmit={this.handleFormSubmit}>
+              <FormGroup>
+                <FormControl
+                  type="text"
+                  value={account}
+                  placeholder="您的 11 位手机号码"
+                  bsStyle={this.validateState()}
+                  bsSize="large"
+                  onChange={this.handleAccountChange}
+                />
+                <HelpBlock>
+                  <p><Glyphicon glyph="question-sign"/> 请使用您的<strong>手机号码</strong>直接登录，无需注册。我们稍后会通过此号码以及本站的回复系统与您联系。</p>
+                </HelpBlock>
+              </FormGroup>
+              <FormGroup>
+                <FormControl
+                  type="password"
+                  value={password}
+                  placeholder="您的密码"
+                  bsSize="large"
+                  onChange={this.handlePasswordChange}
+                />
+              </FormGroup>
+              <Button
+                disabled={!this.validateState()}
+                type="submit"
+                bsStyle="primary"
+                block
+              >
+              登陆
+              </Button>
+            </form>
           </Col>
         </Row>
       </div>
@@ -75,7 +78,11 @@ export default class Login extends Component {
   handleFormSubmit = (e) => {
 		model.login(this.state.account, this.state.password)
       .then((response) => {
-        browserHistory.push('/student/order');
+        if (response.code === 1) {
+          browserHistory.push('/student/order');
+        } else {
+          message.error(response.message);
+        }
 		  });
     e.preventDefault();
   }
