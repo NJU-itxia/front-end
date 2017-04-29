@@ -34,6 +34,7 @@ export default class Login extends React.Component {
                   bsStyle={this.validateState()}
                   bsSize="large"
                   onChange={this.handleAccountChange}
+                  autoFocus={true}
                 />
                 <HelpBlock>
                   <p><Glyphicon glyph="question-sign"/> 请使用您的<strong>手机号码</strong>直接登录，无需注册。我们稍后会通过此号码以及本站的回复系统与您联系。</p>
