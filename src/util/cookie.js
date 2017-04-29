@@ -1,10 +1,10 @@
-export function setCookie(key, value, hours) {
+function set(key, value, hours) {
   var expires  = new Date();
   expires.setTime(expires.getTime() + hours * 60 * 60 * 1000);
   document.cookie = key + "=" + value + "; path=/;expires=" + expires.toGMTString();
 }
 
-export function getCookie(key) {
+function get(key) {
   const reg = new RegExp(`(^| )${key}=([^;]*)(;|$)`);
   let arr;
   if (arr = document.cookie.match(reg)) {
@@ -13,10 +13,16 @@ export function getCookie(key) {
   return null;
 }
 
-export function clearCookie(key) {
+function clear(key) {
   const expires = new Date();
   expires.setTime(expires.getTime() - 1);
-  const value = this.getCookie(key);
+  const value = get(key);
   if(value !== null)
     document.cookie = key + "=" + value + "; path=/;expires=" + expires.toGMTString();
 }
+
+export default {
+  clear,
+  get,
+  set
+};

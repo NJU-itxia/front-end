@@ -1,5 +1,5 @@
 import createHash from 'create-hash';
-import { getCookie, setCookie } from '../util/cookie';
+import cookie from '../util/cookie';
 
 const API_URL = 'http://localhost:5000/api/v1_1';
 
@@ -53,7 +53,7 @@ class StudentModel {
   }
 
   logout() {
-
+    cookie.clear('client');
   }
 
   loadOrders() {
@@ -70,11 +70,11 @@ class StudentModel {
   }
 
   set token(token) {
-    setCookie('client', token, 24 * 7);
+    cookie.set('client', token, 24 * 7);
   }
 
   get token() {
-    return getCookie('client');
+    return cookie.get('client');
   }
 }
 

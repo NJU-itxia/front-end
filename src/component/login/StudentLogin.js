@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { message } from 'antd';
 import { Row, Col, Button, Image, Glyphicon, FormGroup, FormControl, HelpBlock } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -6,7 +6,7 @@ import { browserHistory } from 'react-router';
 
 import model from '../../model/student';
 
-export default class Login extends Component {
+export default class Login extends React.Component {
   state = {
     account: '',
     password: '',

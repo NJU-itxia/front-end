@@ -1,15 +1,19 @@
 import React from 'react';
 import { Button, Col, Icon, Menu, Row } from 'antd';
-import { Link } from 'react-router';
+import { browserHistory, Link } from 'react-router';
+
+import studentModel from '../../model/student';
 
 const MenuItem = Menu.Item;
 const MenuItemGroup = Menu.ItemGroup;
 const SubMenu = Menu.SubMenu;
 
 class Student extends React.Component {
-  handleLogout() {
-
+  handleLogout = () => {
+    studentModel.logout();
+    browserHistory.push('/login/student');
   }
+
   render() {
     const selectedKeys = [this.props.routes[2].path];
     return (
@@ -22,7 +26,13 @@ class Student extends React.Component {
               </Link>
             </Col>
             <Col id="options" span={18} >
-              <Button id="logout-button" size="small"><Icon type="logout" />登出</Button>
+              <Button
+                id="logout-button"
+                size="small"
+                onClick={this.handleLogout}
+              >
+                <Icon type="logout" />登出
+              </Button>
               <Menu id="menu" mode="horizontal" selectedKeys={selectedKeys} >
                 <MenuItem key="order">
                   <Link to="/student/order">当前请求</Link>

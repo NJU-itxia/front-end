@@ -1,8 +1,8 @@
-import { getCookie, setCookie } from '../util/cookie';
+import cookie from '../util/cookie';
 
 class KnightModel {
   constructor(props) {
-    this.token = getCookie('knight');
+    this.token = cookie.get('knight');
   }
 
   login(username, password) {
