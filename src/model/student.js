@@ -30,11 +30,15 @@ class StudentModel {
   login(phone, password) {
     const random_str = 'pong!you';
     const time_stamp = new Date() + '';
-    const encrpted = createHash('sha256').update(password, 'utf8').update(random_str, 'utf8').update(time_stamp, 'utf8').digest('hex');
+    const encrpted = createHash('sha256')
+      .update(password, 'utf8')
+      .update(random_str, 'utf8')
+      .update(time_stamp, 'utf8')
+      .digest('hex');
     return $.ajax({
       url: API_URL + '/client/login',
       method: 'POST',
-      contentType: 'application/json',
+      contentType: 'application/json; charset=utf-8',
       data: JSON.stringify({
         phone_number: phone,
         encryption_str: encrpted,
@@ -47,6 +51,19 @@ class StudentModel {
       }
       this.user = response;
       this.token = response.token;
+    });
+  }
+
+  loadOrders() {
+    $.ajax({
+      url: API_URL + '/client/forms',
+      method: 'GET',
+      contentType: 'application/json; charset=utf-8',
+      headers: {
+        'token': this.token
+      }
+    }).then(response => {
+      console.log(response);
     });
   }
 

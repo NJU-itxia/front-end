@@ -69,6 +69,7 @@ const routes = (
 );
 
 function renderAll() {
+  console.log('renderall');
 	ReactDOM.render(routes, document.getElementById('app'));
 }
 

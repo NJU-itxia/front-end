@@ -73,11 +73,10 @@ export default class Login extends Component {
   }
 
   handleFormSubmit = (e) => {
-		model.login(this.state.account, this.state.password).then((response) => {
-      browserHistory.push('/student/order');
-		}, (reason) => {
-      console.error(reason);
-		});
+		model.login(this.state.account, this.state.password)
+      .then((response) => {
+        browserHistory.push('/student/order');
+		  });
     e.preventDefault();
   }
 
