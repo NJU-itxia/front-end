@@ -1,4 +1,5 @@
 import createHash from 'create-hash';
+
 import cookie from '../util/cookie';
 
 const API_URL = 'http://localhost:5000/api/v1_1';
@@ -48,7 +49,7 @@ class StudentModel {
     }).then(response => {
       this.user = response;
       this.token = response.token;
-      return response
+      return response;
     });
   }
 
