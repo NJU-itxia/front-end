@@ -6,33 +6,37 @@ import ReactDOM from 'react-dom';
 import { browserHistory, Router, Route, IndexRedirect, Redirect, Link, IndexLink } from 'react-router';
 
 import App from './App';
-
 import LoginPage from './component/login/LoginPage';
 import StudentLogin from './component/login/StudentLogin';
 import KnightLogin from './component/login/KnightLogin';
-
 import StudentPage from './component/student/StudentPage';
 import NewOrder from './component/student/NewOrder';
 import History from './component/student/History';
-import studentModel from './model/student';
-
 import KnightPage from './component/knight/KnightPage';
 import Orders from './component/knight/order/Orders';
 import Message from './component/knight/Message';
 import Setting from './component/knight/Setting';
+import studentModel from './model/student';
+import knightModel from './model/knight';
 
-function redirectIfLoggedIn(nextState, replaceState) {
-  // if (cookie.load('studentLoggedIn')) {
-  //   replaceState({ nextPathname: nextState.location.pathname }, '/order');
-  // }
+function redirectIfLoggedIn(nextState, replace) {
+  if (studentModel.token) {
+    replace('/student/order');
+  } else if (knightModel.token) {
+    // TODO
+  }
 }
 
-function requireStudentLogin() {
-
+function requireStudentLogin(nextState, replace) {
+  if (!studentModel.token) {
+    replace('/');
+  }
 }
 
 function requireKnightLogin() {
-
+  if (!knightModel.token) {
+    replace('/');
+  }
 }
 
 const routes = (
