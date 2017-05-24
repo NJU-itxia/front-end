@@ -1,4 +1,14 @@
-## 搭建开发环境的简单说明
+# IT侠预约系统 - 前端（2017年新版）
+
+## TL;DR
+
+1. Install Node.js: https://nodejs.org/en/download/package-manager/
+2. Install Yarn: https://yarnpkg.com/en/docs/install
+3. run `` npm install -g babel-cli`` to install ``babel`` globally
+4. run ``yarn`` to install dependencies
+5. run ``npm start``, visit http://localhost:3009
+
+## Why to use Vagrant
 
 * ``VirtualBox``提供了虚拟机底层的实现，以及GUI管理界面（虽有VBoxManage命令行，但并不好用）
 * ``Vagrant``提供了更简单的命令行对VirtualBox进行操作，使用Vagrantfile文件来配置虚拟机，以及将各系统打包成.box文件进行分发
@@ -8,7 +18,7 @@
   * 文件系统互通：通过Shared Folder实现，即Guest OS里的``/vagrant``和Host OS里的box所在文件夹是一样的，代码就放在这个文件夹里即可
 
 
-## Vagrant安装
+## How to use Vagrant
 * 下载Virtualbox： https://www.virtualbox.org/wiki/Downloads
 * 下载Vagrant： https://www.vagrantup.com/downloads.html
 * 下载Box(Ubuntu 14.04 64bit Server): https://cloud-images.ubuntu.com/vagrant/trusty/current/
@@ -26,51 +36,7 @@
   * http://mirrors.ustc.edu.cn/
   * https://lug.ustc.edu.cn/wiki/mirrors/help/ubuntu
 
-## NodeJS安装
-
-* 官方说明（包含npm）： https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
-
-## Python安装
-
-* 安装``pip``
-  * ``sudo apt-get install python-pip``
-* 安装``virtualenvwrapper``
-  * ``sudo pip install virtualenvwrapper``
-  * 将环境变量写入``.bashrc``
-  * ``mkvirtualenv flask``
-  * ``workon flask``
-
-## 下载代码
-* ``git clone your-git-repo-url``
-
-## 开发环境初始化
-```
-/*
- * nodejs and git must be installed.
- */
-// for mac linux
-npm install
-
-// for window
-npm install
-npm install -dev
-```
-
-
-## 启动方法：
-
-```
-npm install
-npm start
-```
-
-浏览器打开 http://localhost:3000
-
-## 修改绑定端口
-* ``server.js`` ``webpack.config.js`` 3000 改掉
-* ``server.js`` 里的 localhost 改成 '0.0.0.0'
-
-## 学习资料
+## Learn React.js
 * https://facebook.github.io/react/
 * http://babeljs.io/docs/learn-es2015/
 * https://react-bootstrap.github.io/components.html

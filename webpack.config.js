@@ -24,7 +24,6 @@ module.exports = {
     }),
 		new ExtractTextPlugin("./[name]/bundle.css"),
     new webpack.HotModuleReplacementPlugin(),
-    // new webpack.optimize.UglifyJsPlugin({minimize: true})
   ],
   module: {
     loaders: [
