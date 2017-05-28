@@ -8,6 +8,9 @@
 4. run ``yarn`` to install dependencies
 5. run ``npm start``, visit http://localhost:3009
 
+## UI Components
+* Please use  [Ant Design](https://ant.design/index-cn) to replace any legacy code using [Bootstrap](https://react-bootstrap.github.io/)
+
 ## Why to use Vagrant
 
 * ``VirtualBox``提供了虚拟机底层的实现，以及GUI管理界面（虽有VBoxManage命令行，但并不好用）
