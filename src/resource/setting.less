@@ -1,0 +1,68 @@
+.itxia-setting {
+
+  .add-knight-button {
+    width:100px;
+    heigth: auto;
+    text-align: center;
+  }
+
+
+  .icon-loading-circle, .icon-loading-points
+  {
+    width: 22px;
+    height: 22px;
+    font-size: 22px;
+    padding: 0;
+    margin: 0 auto;
+    transform-origin: 50% 50%;
+    -webkit-animation: rotateLoop 2s linear infinite;
+    -moz-animation: rotateLoop 2s linear infinite;
+    -ms-animation: rotateLoop 2s linear infinite;
+    animation: rotateLoop 2s linear infinite;
+
+  }
+
+  .icon-loading-circle::before, .icon-loading-points::before
+  {
+    position: relative;
+    top: -5px;
+    left: 0;
+  }
+
+
+  @keyframes rotateLoop
+  {
+    0% { transform:rotate(0deg); }
+    25% { transform:rotate(90deg); }
+    50% { transform:rotate(180deg); }
+    75% { transform:rotate(270deg); }
+    100% { transform:rotate(360deg); }
+  }
+
+  @-webkit-keyframes rotateLoop
+  {
+    0% { transform:rotate(0deg); }
+    25% { transform:rotate(90deg); }
+    50% { transform:rotate(180deg); }
+    75% { transform:rotate(270deg); }
+    100% { transform:rotate(360deg); }
+  }
+
+  @-moz-keyframes rotateLoop
+  {
+    0%{-moz-transform:rotate(0deg);}
+    25%{-moz-transform:rotate(90deg);}
+    50%{-moz-transform:rotate(180deg);}
+    75%{-moz-transform:rotate(270deg);}
+    100%{-moz-transform:rotate(360deg);}
+  }
+
+  @-ms-keyframes rotateLoop
+  {
+    0%{-ms-transform:rotate(0deg);}
+    25%{-ms-transform:rotate(90deg);}
+    50%{-ms-transform:rotate(180deg);}
+    75%{-ms-transform:rotate(270deg);}
+    100%{-ms-transform:rotate(360deg);}
+  }
+}
